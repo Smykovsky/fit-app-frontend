@@ -1,5 +1,27 @@
 <template>
-
+  <div class='login'>
+    <div class='form-container'>
+      <div class='title'>
+        <h2>Zaloguj się!</h2>
+      </div>
+      <form method='post'>
+        <div class='text_field'>
+          <input type='text' required>
+          <span></span>
+          <label>Nazwa użytkownika</label>
+        </div>
+        <div class='text_field'>
+          <input type='password' required>
+          <span></span>
+          <label>Hasło</label>
+        </div>
+        <input type='submit' value='Zaloguj się'>
+        <div class='account'>
+          <h3>Nie masz konta? <a href=''>Zarejestruj się!</a></h3>
+        </div>
+      </form>
+    </div>
+  </div>
 </template>
 
 <script>
