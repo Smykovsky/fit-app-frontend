@@ -4,15 +4,17 @@
     <div class='routes-container'>
       <nuxt/>
     </div>
+    <Footbar/>
   </div>
 </template>
 
 <script>
 import Navbar from '@/components/Navbar.vue'
+import Footbar from '@/components/Footbar.vue'
 
 export default {
   // middleware: ['auth'],
-  components: { Navbar }
+  components: { Navbar, Footbar }
 }
 </script>
 

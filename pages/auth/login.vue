@@ -2,7 +2,7 @@
   <div class='login'>
     <div class='form-container'>
       <div class='title'>
-        <h2>Zaloguj się!</h2>
+        <h2>Logowanie</h2>
       </div>
       <form method='post'>
         <div class='text_field'>
@@ -15,7 +15,9 @@
           <span></span>
           <label>Hasło</label>
         </div>
-        <input type='submit' value='Zaloguj się'>
+        <div class='btn'>
+          <input type='submit' value='Zaloguj się'>
+        </div>
         <div class='account'>
           <h3>Nie masz konta? <a href=''>Zarejestruj się!</a></h3>
         </div>
