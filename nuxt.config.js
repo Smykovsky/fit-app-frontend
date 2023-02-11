@@ -12,7 +12,7 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+
     ]
   },
   /*
@@ -33,20 +33,76 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
-    '@nuxtjs/router'
+    '@nuxtjs/router',
+    '@nuxtjs/auth-next'
   ],
   /*
   ** Nuxt.js modules
   */
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/router'
+    '@nuxtjs/auth-next',
+    'nuxt-vuex-localstorage'
   ],
+  components: true,
+
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    proxy: true,
+    prefix: process.env.API_URL
+  },
+
+  proxy: {
+    '/api': {
+      target: 'http://localhost:8080',
+      ws: true,
+      changeOrigin: true
+    },
+    '/auth': {
+      target: 'http://localhost:8080',
+      ws: true,
+      changeOrigin: true
+    }
+  },
+
+  auth: {
+    redirect:{
+      login: '/login',
+      logout: '/',
+      callback: '/login',
+      home: 'main'
+    },
+    scopeKey: 'roles',
+    strategies: {
+      local: {
+        scheme: 'refresh',
+        token: {
+          property: 'access_token',
+          required: true,
+          maxAge: 1800,
+          global: false,
+          type: 'Bearer'
+        },
+        refreshToken: {
+          property: 'refresh_token',
+          data: 'refreshToken',
+          maxAge: 60*60*24*30
+        },
+        user: {
+          property: 'user',
+        },
+        endpoints: {
+          login: { url: '/auth/login', method: 'post' },
+          register: { url: '/auth/register', method: 'post' },
+          logout: { url: '/auth/logout', method: 'post' },
+          user: { url: '/auth/user', method: 'get' },
+          refresh: { url: '/auth/refresh', method: 'post' }
+        }
+      }
+    }
   },
 
   router: {

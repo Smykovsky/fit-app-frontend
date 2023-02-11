@@ -4,6 +4,9 @@ import App from '@/components/App.vue'
 
 import dashboard from '@/pages/dashboard.vue'
 
+import login from '@/pages/auth/login.vue'
+import register from '@/pages/auth/register.vue'
+
 Vue.use(Router)
 
 export function createRouter() {
@@ -19,6 +22,16 @@ export function createRouter() {
       }
     },
     routes: [
+      {
+        path: '/login',
+        component: login,
+        name: 'login'
+      },
+      {
+        path: '/register',
+        component: register,
+        name: 'register'
+      },
       {
         path: '',
         component: App,
