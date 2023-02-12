@@ -1,6 +1,6 @@
 <template>
   <div class='footbar'>
-    FOOTBAR CONTENT
+
   </div>
 </template>
 

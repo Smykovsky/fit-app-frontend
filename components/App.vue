@@ -18,6 +18,6 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="sass">
+@import "assets/app.sass"
 </style>

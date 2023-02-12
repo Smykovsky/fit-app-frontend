@@ -1,6 +1,5 @@
 <template>
   <div class='dashboard'>
-    DASHBOARD
   </div>
 </template>
 
