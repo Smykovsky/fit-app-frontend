@@ -1,8 +1,8 @@
 <template>
   <div class='app'>
-    <Navbar/>
-    <div class='routes-container'>
-      <nuxt/>
+    <div class='content'>
+      <Navbar/>
+      <Main/>
     </div>
     <Footbar/>
   </div>
@@ -11,10 +11,11 @@
 <script>
 import Navbar from '@/components/Navbar.vue'
 import Footbar from '@/components/Footbar.vue'
+import Main from '@/components/Main.vue'
 
 export default {
   // middleware: ['auth'],
-  components: { Navbar, Footbar }
+  components: { Navbar, Footbar, Main }
 }
 </script>
 
