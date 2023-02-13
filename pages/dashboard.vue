@@ -18,7 +18,7 @@
         <span>Licznik makroskładników</span>
       </div>
       <div class='chart-container'>
-        <doughnut-chart
+        <pie-chart
           id="my-chart-id"
           :chart-data="makroChart"
           class='chart'
