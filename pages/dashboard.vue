@@ -36,7 +36,7 @@ export default {
       kcalChart: {
         datasets: [{
           label: 'kcal',
-          backgroundColor: ["#5283ff", 'lightgrey'],
+          backgroundColor: ["#5283ff", '#F0F0F0'],
           data: [35, 65],
           datalabels: {
             formatter: (value) => {
@@ -44,7 +44,7 @@ export default {
             },
             color: 'black',
             font: {
-              size: 16,
+              size: 14,
             }
           }
         }]
@@ -56,10 +56,14 @@ export default {
             formatter: (value) => {
               return value + 'g'
             },
-            color: 'black',
+            display: true,
+            backgroundColor: '#ccc',
+            borderRadius: 50,
             font: {
-              size: 16,
-            }
+              color: 'red',
+              weight: 'bold',
+              size: 14
+            },
           },
           data: [45, 55, 48],
           backgroundColor: ['#4D9DE0', '#E15554', '#E0E04C'],
