@@ -36,13 +36,31 @@ export default {
       kcalChart: {
         datasets: [{
           label: 'kcal',
-          backgroundColor: ["#5283ff", 'white'],
-          data: [35, 65]
+          backgroundColor: ["#5283ff", 'lightgrey'],
+          data: [35, 65],
+          datalabels: {
+            formatter: (value) => {
+              return value + '%'
+            },
+            color: 'black',
+            font: {
+              size: 16,
+            }
+          }
         }]
       },
       makroChart: {
         labels: ['Węglowodany', 'Białka', 'Tłuszcze'],
         datasets: [{
+          datalabels: {
+            formatter: (value) => {
+              return value + 'g'
+            },
+            color: 'black',
+            font: {
+              size: 16,
+            }
+          },
           data: [45, 55, 48],
           backgroundColor: ['#4D9DE0', '#E15554', '#E0E04C'],
         }],

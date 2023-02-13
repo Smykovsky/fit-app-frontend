@@ -1,6 +1,9 @@
 import Vue from "vue";
 import { Doughnut } from "vue-chartjs/legacy";
 import { Pie } from 'vue-chartjs/legacy'
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+
+
 import {
   Chart as ChartJS,
   Title,
@@ -23,6 +26,7 @@ ChartJS.register(
   CategoryScale,
   LinearScale,
   LineElement,
+  ChartDataLabels
 );
 
 Vue.component("doughnut-chart", {
