@@ -29,7 +29,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    {src: "~/plugins/fontawesome.js", ssr: false}
+    {src: "~/plugins/fontawesome.js", ssr: false},
+    {src: "~/plugins/chart.js", mode: 'client'}
   ],
   /*
   ** Nuxt.js dev-modules
