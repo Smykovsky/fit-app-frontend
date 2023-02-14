@@ -1,6 +1,7 @@
 import Vue from "vue";
 import { Doughnut } from "vue-chartjs/legacy";
 import { Pie } from 'vue-chartjs/legacy'
+import { Line } from 'vue-chartjs/legacy'
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 

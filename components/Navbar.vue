@@ -6,19 +6,19 @@
           <img src='/logo.jpg' alt=''>
         </a></li>
 
-        <li class='dashboard-li'><router-link :to="{name: 'dashboard'}">
+        <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'dashboard'}">
           <font-awesome-icon class='icon' icon="fa-solid fa-gauge" />
           <span class='nav-item'>Dashboard</span>
         </router-link></li>
-        <li class='dashboard-li'><router-link :to="{name: 'profile'}">
+        <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'profile'}">
           <font-awesome-icon class='icon' icon="fa-solid fa-user" />
           <span class='nav-item'>Mój profil</span>
         </router-link></li>
-        <li class='dashboard-li'><router-link :to="{name: 'diet'}">
+        <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'diet'}">
           <font-awesome-icon class='icon' icon="fa-solid fa-utensils" />
           <span class='nav-item'>Mój plan</span>
         </router-link></li>
-        <li class='dashboard-li'><router-link :to="{name: 'progress'}">
+        <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'progress'}">
           <font-awesome-icon class='icon' icon="fa-solid fa-weight-scale" />
           <span class='nav-item'>Mój progres</span>
         </router-link></li>

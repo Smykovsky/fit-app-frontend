@@ -47,7 +47,7 @@ export default {
               size: 14,
             }
           }
-        }]
+        }],
       },
       makroChart: {
         labels: ['Węglowodany', 'Białka', 'Tłuszcze'],
