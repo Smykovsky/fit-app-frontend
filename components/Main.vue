@@ -1,5 +1,5 @@
 <template>
-  <div class='routes-section'>
+  <div class='routes-section md3'>
     <main>
       <nuxt/>
     </main>

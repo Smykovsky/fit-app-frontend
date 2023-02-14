@@ -30,9 +30,7 @@
       </div>
 
     </div>
-    <div class='diet-progress'>
-      progres
-    </div>
+
 
     <b-modal id="modal-meal" title="Dodawanie posiłku" hide-footer>
       <b-form>
@@ -96,7 +94,7 @@
         </b-form-group>
         <b-form-group
           id="input-group-1"
-          label="Podaj ilość węglowodanów w produkcie"
+          label="Podaj ilość tłuszczów w produkcie"
           label-for="input-1"
         >
           <b-form-input

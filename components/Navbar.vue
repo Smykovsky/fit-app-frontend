@@ -24,15 +24,15 @@
         </router-link></li>
 
         <div class='logout'>
-          <li class='dashboard-li'><router-link :to="{name: 'help'}">
+          <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'help'}">
             <font-awesome-icon class='icon' icon="fa-solid fa-circle-question" />
             <span class='nav-item'>Potrzebujesz pomocy?</span>
           </router-link></li>
-          <li class='dashboard-li'><router-link :to="{name: 'contact'}">
+          <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'contact'}">
             <font-awesome-icon class='icon' icon="fa-solid fa-phone" />
             <span class='nav-item'>Kontakt</span>
           </router-link></li>
-          <li class='dashboard-li'><router-link to='to'>
+          <li class='dashboard-li'><router-link class="text-decoration-none" to='to'>
             <font-awesome-icon class='icon' icon="fa-solid fa-right-from-bracket" />
             <span class='nav-item'>Wyloguj się</span>
           </router-link></li>
