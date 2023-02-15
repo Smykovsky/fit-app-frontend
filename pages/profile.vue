@@ -2,7 +2,7 @@
   <div class='profile'>
     <div class='profile-container'>
       <div class='title profile-header'>
-        <span>Profil</span>
+        <span>Profil użytkownika</span>
       </div>
       <div class='profile-body'>
         <div class='user-data'>

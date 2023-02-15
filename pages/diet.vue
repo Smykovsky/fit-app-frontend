@@ -3,7 +3,7 @@
     <div class='title'>
       <span>Twój dzień</span><br>
       <div class='meal-add'>
-        <b-button class='btn btn-success' v-b-modal.modal-meal>Dodaj posiłek</b-button>
+        <b-button class='meal-btn btn btn-success' v-b-modal.modal-meal>Dodaj posiłek</b-button>
       </div>
       <div>
       </div>
@@ -13,7 +13,7 @@
         <div class='meal-title'>
           <h2>Śniadanie</h2>
           <div class='meal-add'>
-            <b-button class='rounded-sm btn btn-success' v-b-modal.modal-item>+</b-button>
+            <b-button class='add-btn rounded-sm btn btn-success' v-b-modal.modal-item>+</b-button>
           </div>
         </div>
         <div class='diet-content'>

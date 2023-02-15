@@ -1,7 +1,7 @@
 import Vue from "vue";
 import { Doughnut } from "vue-chartjs/legacy";
 import { Pie } from 'vue-chartjs/legacy'
-import { Line } from 'vue-chartjs/legacy'
+import { Bar } from 'vue-chartjs/legacy'
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 
@@ -37,3 +37,7 @@ Vue.component("doughnut-chart", {
 Vue.component("pie-chart", {
   extends: Pie,
 });
+
+Vue.component('bar-chart', {
+  extends: Bar,
+})

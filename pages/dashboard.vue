@@ -8,6 +8,7 @@
       <div class='chart-container'>
         <doughnut-chart
           :chart-data="kcalChart"
+          :chart-options='doughnutOptions'
           class='chart'
         />
       </div>
@@ -19,8 +20,8 @@
       </div>
       <div class='chart-container'>
         <pie-chart
-          id="my-chart-id"
           :chart-data="makroChart"
+          :chart-options='pieOptions'
           class='chart'
         />
       </div>
@@ -56,9 +57,6 @@ export default {
             formatter: (value) => {
               return value + 'g'
             },
-            display: true,
-            backgroundColor: '#ccc',
-            borderRadius: 50,
             font: {
               color: 'red',
               weight: 'bold',
@@ -68,6 +66,18 @@ export default {
           data: [45, 55, 48],
           backgroundColor: ['#4D9DE0', '#E15554', '#E0E04C'],
         }],
+      },
+      doughnutOptions: {
+        responsive: true,
+        offset: 8,
+        spacing: 4,
+        hoverOffset: 10,
+        hoverBorderWidth: 1
+      },
+      pieOptions: {
+        responsive: true,
+        hoverOffset: 10,
+        spacing: 2
       }
     }
   },
