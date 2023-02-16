@@ -7,8 +7,6 @@
       <div class='profile-body'>
         <div class='user-data'>
           <div class='data'>
-            <span class='data-item'>Imię: </span>
-            <span class='data-item'>Nazwisko: </span>
             <span class='data-item'>Nazwa użytkownika: </span>
             <span class='data-item'>E-mail: </span>
             <span class='data-item'>Wiek: </span>
