@@ -15,7 +15,7 @@
           <span></span>
           <label><font-awesome-icon icon="fa-solid fa-lock" /> Hasło</label>
         </div>
-        <div class='btn'>
+        <div class='button-container'>
           <input type='submit' value='Zaloguj się'>
         </div>
         <div class='account'>

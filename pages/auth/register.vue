@@ -25,7 +25,7 @@
           <span></span>
           <label><font-awesome-icon icon="fa-solid fa-lock" /> Powtórz hasło</label>
         </div>
-        <div class='btn'>
+        <div class='button-container'>
           <input type='submit' value='Zarejestruj się'>
         </div>
         <div class='account'>

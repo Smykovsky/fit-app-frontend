@@ -3,7 +3,7 @@
     <div class='title'>
       <span>Historia wagi</span>
       <div class='meal-add'>
-        <b-button class='btn btn-success' v-b-modal.modal-meal>Dodaj posiłek</b-button>
+        <b-button class='btn btn-success' v-b-modal.modal-progres>Nowa waga</b-button>
       </div>
     </div>
 
@@ -14,6 +14,28 @@
           :chart-options='barOptions'
         />
     </div>
+
+    <b-modal id="modal-progres" title="Wprowadź nową wagę" hide-footer>
+      <b-form>
+        <b-form-group
+          id="input-group-1"
+          label="Podaj nową wagę"
+          label-for="input-1"
+        >
+          <b-form-input
+            id="input-1"
+            type="number"
+            required
+          ></b-form-input>
+        </b-form-group>
+        <b-form-group
+          id='input-group-2'
+        >
+          <b-button class='btn btn-danger' @click="$bvModal.hide('modal-progres')">Zamknij</b-button>
+          <b-button class='btn btn-success'>Dodaj</b-button>
+        </b-form-group>
+      </b-form>
+    </b-modal>
   </div>
 </template>
 
@@ -38,6 +60,11 @@ export default {
         ]
       },
       barOptions: {
+        plugins: {
+          legend: {
+            display: false
+          }
+        },
         responsive: true,
         barThickness: 50,
         hoverOffset: 4,
