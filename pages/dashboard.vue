@@ -72,7 +72,8 @@ export default {
         offset: 8,
         spacing: 4,
         hoverOffset: 10,
-        hoverBorderWidth: 1
+        hoverBorderWidth: 1,
+        maintainAspectRatio: true
       },
       pieOptions: {
         responsive: true,
