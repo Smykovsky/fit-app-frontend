@@ -45,7 +45,18 @@
         <div class='content'>
           <span>Zjedzone kalorie:</span>
           <div class='equal'>
-            <span>1000</span>
+            <span>887</span>
+          </div>
+        </div>
+      </div>
+      <div class='card card-calendar'>
+        <div class='icon'>
+          <font-awesome-icon icon="fa-solid fa-calendar-days" />
+        </div>
+        <div class='content'>
+          <span>Dzisiaj:</span>
+          <div class='equal'>
+            <span>20 luty 2023r</span>
           </div>
         </div>
       </div>
