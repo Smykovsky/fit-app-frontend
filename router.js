@@ -6,7 +6,6 @@ import login from '@/pages/auth/login.vue'
 import register from '@/pages/auth/register.vue'
 
 import dashboard from '@/pages/dashboard.vue'
-import profile from '@/pages/profile.vue'
 import diet from '@/pages/diet.vue'
 import progress from '@/pages/progress.vue'
 import help from '@/pages/help.vue'
@@ -45,11 +44,6 @@ export function createRouter() {
             path: '',
             component: dashboard,
             name: 'dashboard'
-          },
-          {
-            path: '/profile',
-            component: profile,
-            name: 'profile'
           },
           {
             path: '/diet',

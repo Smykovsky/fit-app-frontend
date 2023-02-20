@@ -1,85 +1,54 @@
 <template>
   <div class='dashboard'>
-    <div class='kcal-container'>
-      <div class='title'>
-        <span>Licznik kalorii</span>
-      </div>
-
-      <div class='chart-container'>
-        <doughnut-chart
-          :chart-data="kcalChart"
-          :chart-options='doughnutOptions'
-          class='chart'
-        />
-      </div>
+    <div class='header-container'>
+      <span>Dashboard</span>
     </div>
 
-    <div class='makro-container'>
-      <div class='title'>
-        <span>Licznik makroskładników</span>
+    <div class='card-container'>
+      <div class='card card-weight'>
+        <div class='logo'>
+          <font-awesome-icon icon="fa-solid fa-house" />
+        </div>
+        <div class='content'>
+
+        </div>
       </div>
-      <div class='chart-container'>
-        <pie-chart
-          :chart-data="makroChart"
-          :chart-options='pieOptions'
-          class='chart'
-        />
-      </div>
+      <div class='card card-goal'></div>
+      <div class='card card-kcal'></div>
+      <div class='card card-eaten'></div>
     </div>
+
   </div>
 </template>
+
+
+<!--<div class='chart'>-->
+<!--<apexchart type="pie" width='100%' height='100%' :options="pieOptions" :series="pieData"></apexchart>-->
+<!--</div>-->
 
 <script>
 export default {
   name: 'dashboard',
   data() {
     return {
-      kcalChart: {
-        datasets: [{
-          label: 'kcal',
-          backgroundColor: ["#5283ff", '#F0F0F0'],
-          data: [35, 65],
-          datalabels: {
-            formatter: (value) => {
-              return value + '%'
-            },
-            color: 'black',
-            font: {
-              size: 14,
-            }
-          }
-        }],
-      },
-      makroChart: {
-        labels: ['Węglowodany', 'Białka', 'Tłuszcze'],
-        datasets: [{
-          datalabels: {
-            formatter: (value) => {
-              return value + 'g'
-            },
-            font: {
-              color: 'red',
-              weight: 'bold',
-              size: 14
-            },
-          },
-          data: [45, 55, 48],
-          backgroundColor: ['#4D9DE0', '#E15554', '#E0E04C'],
-        }],
-      },
-      doughnutOptions: {
-        responsive: true,
-        offset: 8,
-        spacing: 4,
-        hoverOffset: 10,
-        hoverBorderWidth: 1,
-        maintainAspectRatio: true
-      },
-      pieOptions: {
-        responsive: true,
-        hoverOffset: 10,
-        spacing: 2
-      }
+
+      // pieData: [30, 50, 70],
+      // pieOptions: {
+      //   chart: {
+      //     type: 'pie'
+      //   },
+      //   stroke: {
+      //     curve: 'smooth'
+      //   },
+      //   labels: ['Białko', 'Węglowodany', 'Tłuszcze']
+      // },
+      //
+      // radialBarData: [ 70],
+      // radialBarOptions: {
+      //   chart: {
+      //     type: 'radialBar',
+      //   },
+      // }
     }
   },
 }

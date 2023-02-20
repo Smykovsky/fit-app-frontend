@@ -2,17 +2,13 @@
   <div class='nav-container'>
     <nav>
       <ul>
-        <li><a href='#' class='logo'>
+        <li><a class='logo'>
           <img src='/logo.jpg' alt=''>
         </a></li>
 
         <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'dashboard'}">
           <font-awesome-icon class='icon' icon="fa-solid fa-gauge" />
           <span class='nav-item'>Dashboard</span>
-        </router-link></li>
-        <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'profile'}">
-          <font-awesome-icon class='icon' icon="fa-solid fa-user" />
-          <span class='nav-item'>Mój profil</span>
         </router-link></li>
         <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'diet'}">
           <font-awesome-icon class='icon' icon="fa-solid fa-utensils" />
@@ -44,7 +40,14 @@
 
 <script>
 export default {
-  name: 'Navbar'
+  name: 'Navbar',
+
+  methods: {
+    display() {
+      let teast = document.querySelectorAll("nav-item");
+      teast.classList.add('hidden');
+    }
+  }
 }
 </script>
 

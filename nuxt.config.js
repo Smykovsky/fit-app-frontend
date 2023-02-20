@@ -30,7 +30,7 @@ export default {
   */
   plugins: [
     {src: "~/plugins/fontawesome.js", ssr: false},
-    {src: "~/plugins/chart.js", mode: 'client'}
+    {src: "~/plugins/apex-charts.js", ssr: false}
   ],
   /*
   ** Nuxt.js dev-modules

@@ -1,20 +1,19 @@
 <template>
-  <div class='progres-container'>
-    <div class='title'>
-      <span>Historia wagi</span>
-      <div class='meal-add'>
-        <b-button class='btn btn-success' v-b-modal.modal-progres>Nowa waga</b-button>
+  <div class='progres'>
+    <div class='progres-container'>
+      <div class='title-container'>
+        <span>Historia wagi</span>
+        <div class='meal-add'>
+          <b-button class='btn btn-success' v-b-modal.modal-progres>Nowa waga</b-button>
+        </div>
+      </div>
+
+      <div class='chart-container'>
+        <div class='chart'>
+          <apexchart width="100%" height="100%" type="line" :options="chartOptions" :series="series"></apexchart>
+        </div>
       </div>
     </div>
-
-    <div class='container'>
-        <bar-chart
-          :chart-data='progressBar'
-          :height='225'
-          :chart-options='barOptions'
-        />
-    </div>
-
     <b-modal id="modal-progres" title="Wprowadź nową wagę" hide-footer>
       <b-form>
         <b-form-group
@@ -44,31 +43,24 @@ export default {
   name: 'progress',
   data() {
     return {
-      progressBar: {
-        labels: ['2023-01-01', '2023-01-07', '2023-01-14', '2023-01-21', '2023-01-28', '2023-02-04', '2023-02-011' ],
-        datasets: [
-          {
-            datalabels: {
-              formatter: (value) => {
-                return value + ' kg'
-              }
-            },
-            label: "Nowa waga",
-            data: ['100', '97', '92', '95', '88', '90', '84' ],
-            backgroundColor: 'lightblue'
-          }
-        ]
-      },
-      barOptions: {
-        plugins: {
-          legend: {
-            display: false
+      series : [{
+        name: 'Progres',
+        data: [10, 40, 50, 60, 100, 120]
+      }],
+      chartOptions: {
+        chart: {
+          type: 'line',
+          height: 350,
+          zoom: {
+            enabled: false
           }
         },
-        responsive: true,
-        barThickness: 50,
-        hoverOffset: 4,
-        margin: 4
+        dataLabels: {
+          enabled: false
+        },
+        xaxis: {
+          categories: ['2023-01-01', '2023-01-15', '2023-02-01', '2023-02-06', '2023-02-14', '2023-02-20']
+        }
       }
     }
   },

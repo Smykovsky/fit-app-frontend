@@ -1,6 +1,6 @@
 <template>
   <div class='diet-container'>
-    <div class='title'>
+    <div class='title-container'>
       <span>Twój dzień</span><br>
       <div class='meal-add'>
         <b-button class='meal-btn btn btn-success' v-b-modal.modal-meal>Dodaj posiłek</b-button>
@@ -11,17 +11,17 @@
 
     <div class='card-container'>
       <div class='diet-card'>
-        <div class='meal-title'>
+        <div class='meal-title-container'>
           <h2>Śniadanie</h2>
           <div class='meal-add'>
             <b-button class='add-btn rounded-sm btn btn-success' v-b-modal.modal-item>+</b-button>
           </div>
         </div>
         <div class='diet-content'>
-            <div class='item-title'>
+            <div class='item-title-container'>
               <span>Serek wiejski</span>
             </div>
-            <div class='item-content'>
+            <div class='item-content-container'>
               <span class='item-makro'>Kcal: </span>
               <span class='item-makro'>W: </span>
               <span class='item-makro'>B: </span>
