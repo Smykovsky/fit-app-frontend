@@ -51,37 +51,46 @@
       </div>
     </div>
 
+    <div class='charts-container'>
+      <div class='donut-container'>
+        <div class='chart'>
+          <apexchart type="radialBar" width='100%' height='100%' :options="radialBarOptions" :series="radialBarData"></apexchart>
+        </div>
+      </div>
+
+      <div class='pie-container'>
+        <div class='chart'>
+          <apexchart type="pie" width='100%' height='100%' :options="pieOptions" :series="pieData"></apexchart>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
-
-
-<!--<div class='chart'>-->
-<!--<apexchart type="pie" width='100%' height='100%' :options="pieOptions" :series="pieData"></apexchart>-->
-<!--</div>-->
-
 <script>
 export default {
   name: 'dashboard',
   data() {
     return {
 
-      // pieData: [30, 50, 70],
-      // pieOptions: {
-      //   chart: {
-      //     type: 'pie'
-      //   },
-      //   stroke: {
-      //     curve: 'smooth'
-      //   },
-      //   labels: ['Białko', 'Węglowodany', 'Tłuszcze']
-      // },
-      //
-      // radialBarData: [ 70],
-      // radialBarOptions: {
-      //   chart: {
-      //     type: 'radialBar',
-      //   },
-      // }
+      pieData: [30, 50, 70],
+      pieOptions: {
+        chart: {
+          type: 'pie'
+        },
+        stroke: {
+          curve: 'smooth'
+        },
+        labels: ['Białko', 'Węglowodany', 'Tłuszcze']
+      },
+
+      radialBarData: [70],
+      radialBarOptions: {
+        chart: {
+          type: 'radialBar',
+        },
+        labels: ['Zjedzone kalorie: ']
+      },
     }
   },
 }
