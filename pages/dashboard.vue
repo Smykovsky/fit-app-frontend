@@ -6,16 +6,49 @@
 
     <div class='card-container'>
       <div class='card card-weight'>
-        <div class='logo'>
-          <font-awesome-icon icon="fa-solid fa-house" />
+        <div class='icon'>
+          <font-awesome-icon icon="fa-solid fa-weight-hanging" />
         </div>
         <div class='content'>
-
+          <span>Aktualna waga:</span>
+          <div class='equal'>
+            <span>90</span>
+          </div>
         </div>
       </div>
-      <div class='card card-goal'></div>
-      <div class='card card-kcal'></div>
-      <div class='card card-eaten'></div>
+      <div class='card card-goal'>
+        <div class='icon'>
+          <font-awesome-icon icon="fa-solid fa-check" />
+        </div>
+        <div class='content'>
+          <span>Twój aktualny cel:</span>
+          <div class='equal'>
+            <span>Masa mięśniowa</span>
+          </div>
+        </div>
+      </div>
+      <div class='card card-kcal'>
+        <div class='icon'>
+          <font-awesome-icon icon="fa-solid fa-cookie" />
+        </div>
+        <div class='content'>
+          <span>Wymagane kalorie: </span>
+          <div class='equal'>
+            <span>1000</span>
+          </div>
+        </div>
+      </div>
+      <div class='card card-eaten'>
+        <div class='icon'>
+          <font-awesome-icon icon="fa-solid fa-cookie-bite" />
+        </div>
+        <div class='content'>
+          <span>Zjedzone kalorie:</span>
+          <div class='equal'>
+            <span>1000</span>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>

@@ -19,11 +19,37 @@
     .card
       margin: 5px
       border-radius: 15px
+      min-width: 300px
+      min-height: 200px
       width: 25%
       height: 100%
       border: 1px solid black
-      .logo
-        background: none
+      display: flex
+      flex-direction: row
+      padding: 5px
+      .icon
+        padding: 5px
+        width: 40%
+        height: 100%
+        font-size: 90px
+        display: flex
+        justify-content: center
+        align-items: center
+      .content
+        width: 60%
+        height: 100%
+        font-size: 20px
+        text-align: center
+        display: flex
+        flex-direction: column
+        .equal
+          text-align: center
+          padding: 20px
+          width: 100%
+          height: auto
+          span
+            font-size: 25px
+
 
 @media screen and (max-width: 950px)
   .dashboard
