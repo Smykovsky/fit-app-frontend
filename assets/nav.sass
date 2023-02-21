@@ -6,22 +6,21 @@
     top: 0
     bottom: 0
     height: 98vh
+    max-height: 100%
     left: 0
     background: #fff
     width: auto
     overflow: hidden
     box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.5)
-
-.logo
-  text-align: center
-  margin: 10px 10px 10px 10px
-  border-bottom: 3px solid #eee
-
-.logo img
-  align-items: center
-  width: 130px
-  height: 130px
-  border-radius: 50%
+    .logo
+      text-align: center
+      margin: 10px 10px 10px 10px
+      border-bottom: 3px solid #eee
+  img
+    align-items: center
+    width: 130px
+    height: 130px
+    border-radius: 50%
 
 a
   position: relative
@@ -46,9 +45,6 @@ nav .icon
   margin-left: 10px
   height: 40px
 
-.hidden
-  display: none
-
 a:hover
   background: #eee
   border-radius: 15px
@@ -69,7 +65,7 @@ a:hover
 @media screen and (max-width: 950px)
   .nav-container
     width: 30px
-    height: 30px
+    height: 100%
     padding: 0
     margin: 0
     display: block

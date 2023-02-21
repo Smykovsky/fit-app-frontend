@@ -1,7 +1,10 @@
 <template>
-  <div class='dashboard'>
+  <div class='dashboard-container'>
     <div class='header-container'>
       <span>Dashboard</span>
+      <div class='personalize'>
+        <font-awesome-icon v-b-modal.modal-user icon="fa-solid fa-user" />
+      </div>
     </div>
 
     <div class='card-container'>
@@ -76,6 +79,7 @@
       </div>
     </div>
 
+    <ModalPersonalize/>
   </div>
 </template>
 <script>
@@ -83,16 +87,24 @@ export default {
   name: 'dashboard',
   data() {
     return {
+      selectedGender: null,
+      goal: null,
 
       pieData: [30, 50, 70],
       pieOptions: {
         chart: {
           type: 'pie'
         },
+        dataLabels: {
+          formatter: function(value) {
+            return Math.round(value, 2) + 'g'
+          }
+        },
         stroke: {
           curve: 'smooth'
         },
-        labels: ['Białko', 'Węglowodany', 'Tłuszcze']
+        labels: ['Białko', 'Węglowodany', 'Tłuszcze'],
+
       },
 
       radialBarData: [70],
@@ -100,7 +112,7 @@ export default {
         chart: {
           type: 'radialBar',
         },
-        labels: ['Zjedzone kalorie: ']
+        labels: ['Zjedzone kalorie: '],
       },
     }
   },
