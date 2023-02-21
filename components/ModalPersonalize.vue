@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-modal id="modal-user" title="Dodawanie posiłku" hide-footer>
+    <b-modal id="modal-user" title="Personalizuj profil" hide-footer>
       <b-form>
         <b-form-group
           id="input-group-1"

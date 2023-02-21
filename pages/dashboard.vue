@@ -112,6 +112,28 @@ export default {
         chart: {
           type: 'radialBar',
         },
+        plotOptions: {
+          radialBar: {
+            hollow: {
+              margin: 15,
+              size: "80%"
+            },
+            dataLabels: {
+              showOn: 'always',
+              name: {
+                offsetY: -10,
+                show: true,
+                color: '#888',
+                fontSize: '20px'
+              },
+              value: {
+                color: '#111',
+                fontSize: '40px',
+                show: true
+              }
+            }
+          }
+        },
         labels: ['Zjedzone kalorie: '],
       },
     }
