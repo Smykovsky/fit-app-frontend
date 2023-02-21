@@ -14,7 +14,7 @@ import Footbar from '@/components/Footbar.vue'
 import Main from '@/components/Main.vue'
 
 export default {
-  // middleware: ['auth'],
+  middleware: ['auth'],
   components: { Navbar, Footbar, Main }
 }
 </script>

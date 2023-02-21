@@ -54,7 +54,8 @@
       </div>
       <div class='card card-calendar'>
         <div class='icon'>
-          <font-awesome-icon icon="fa-solid fa-calendar-days" />
+          <font-awesome-icon class='ikona' icon="fa-solid fa-calendar-days" />
+          <i class="fa-solid fa-user"></i>
         </div>
         <div class='content'>
           <span>Dzisiaj:</span>

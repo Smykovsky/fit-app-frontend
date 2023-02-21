@@ -77,7 +77,7 @@ export default {
       login: '/login',
       logout: '/',
       callback: '/login',
-      home: 'main'
+      home: '/'
     },
     scopeKey: 'roles',
     strategies: {

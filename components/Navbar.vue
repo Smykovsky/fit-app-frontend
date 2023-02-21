@@ -28,10 +28,10 @@
             <font-awesome-icon class='icon' icon="fa-solid fa-phone" />
             <span class='nav-item'>Kontakt</span>
           </router-link></li>
-          <li class='dashboard-li'><router-link class="text-decoration-none" to='to'>
+          <li @click='logout'  class='dashboard-li'><a class="text-decoration-none">
             <font-awesome-icon class='icon' icon="fa-solid fa-right-from-bracket" />
             <span class='nav-item'>Wyloguj się</span>
-          </router-link></li>
+          </a></li>
         </div>
       </ul>
     </nav>
@@ -43,9 +43,14 @@ export default {
   name: 'Navbar',
 
   methods: {
-    display() {
-      let teast = document.querySelectorAll("nav-item");
-      teast.classList.add('hidden');
+    async logout() {
+      try {
+        await this.$auth.logout('local');
+        await this.$router.push({name: 'login'});
+      } catch (error) {
+        console.log(error)
+      }
+
     }
   }
 }
