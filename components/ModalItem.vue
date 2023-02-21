@@ -21,7 +21,7 @@
         >
           <b-form-input
             id="input-1"
-            type="text"
+            type="number"
             required
           ></b-form-input>
         </b-form-group>
@@ -32,7 +32,7 @@
         >
           <b-form-input
             id="input-1"
-            type="text"
+            type="number"
             required
           ></b-form-input>
         </b-form-group>
@@ -43,7 +43,7 @@
         >
           <b-form-input
             id="input-1"
-            type="text"
+            type="number"
             required
           ></b-form-input>
         </b-form-group>
