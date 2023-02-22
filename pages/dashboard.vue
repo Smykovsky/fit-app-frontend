@@ -89,6 +89,10 @@ export default {
     this.loadStats()
   },
 
+  created() {
+    this.loadStats()
+  },
+
   methods: {
     async loadStats() {
       this.$axios.get('/api/user/data', {
@@ -96,14 +100,16 @@ export default {
       }).then(response => {
         this.userDetails = response.data;
         this.pieData = [response.data.proteins, response.data.carbohydrates, response.data.fats];
-        this.radialBarData = [response.data.caloriesEaten];
         console.log(this.pieData)
-
         console.log(this.userDetails)
       }).catch(error => {
         console.log(error)
       })
     },
+
+    caloriesToPercent(max, now) {
+      return (now * 100) / max;
+    }
   },
 
   data() {

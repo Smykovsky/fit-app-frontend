@@ -32,7 +32,6 @@
     "vue-router": "3.6.5",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.10",
-    "vuetify": "^2.5.14",
     "webpack": "^4.46.0",
     "apexcharts": "^3.33.1",
     "vue-apexcharts": "^1.6.2"
@@ -42,7 +41,6 @@
     "@mdi/font": "^7.1.96",
     "@nuxt/types": "~2.15.0",
     "@nuxtjs/router": "^1.7.0",
-    "@nuxtjs/vuetify": "^1.12.3",
     "font-awesome": "^4.7.0",
     "sass": "^1.54.5",
     "sass-loader": "^10.3.1"
