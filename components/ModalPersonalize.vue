@@ -10,6 +10,7 @@
           <b-form-input
             id="input-1"
             type="number"
+            v-model='client.age'
             required
           ></b-form-input>
         </b-form-group>
@@ -21,6 +22,7 @@
           <b-form-input
             id="input-1"
             type="number"
+            v-model='client.weight'
             required
           ></b-form-input>
         </b-form-group>
@@ -32,6 +34,7 @@
           <b-form-input
             id="input-1"
             type="number"
+            v-model='client.height'
             required
           ></b-form-input>
         </b-form-group>
@@ -42,14 +45,12 @@
         >
           <b-form-select
             id="input-1"
-            options=formOptions
-            v-model='selectedGender'
+            v-model='client.gender'
             required
           >
             <b-form-select-option value='Mężczyzna'>Mężczyzna</b-form-select-option>
             <b-form-select-option value='Kobieta'>Kobieta</b-form-select-option>
           </b-form-select>
-          <div class='mt-2'>Selected: {{selectedGender}}</div>
         </b-form-group>
         <b-form-group
           id="input-group-1"
@@ -58,21 +59,19 @@
         >
           <b-form-select
             id="input-1"
-            options=formOptions
-            v-model='goal'
+            v-model='client.goal'
             required
           >
             <b-form-select-option value='Utrzymanie masy'>Utrzymanie masy</b-form-select-option>
             <b-form-select-option value='Redukcja'>Redukcja</b-form-select-option>
             <b-form-select-option value='Masa mięśniowa'>Masa mięśniowa</b-form-select-option>
           </b-form-select>
-          <div class='mt-2'>Selected: {{goal}}</div>
         </b-form-group>
         <b-form-group
           id='input-group-2'
         >
           <b-button class='btn btn-danger' @click="$bvModal.hide('modal-user')">Zamknij</b-button>
-          <b-button class='btn btn-success'>Dodaj</b-button>
+          <b-button @click='personalizeUser' class='btn btn-success'>Dodaj</b-button>
         </b-form-group>
       </b-form>
     </b-modal>
@@ -84,9 +83,28 @@ export default {
   name: 'ModalPersonalize',
   data() {
     return {
-      selectedGender: null,
-      goal: null,
+      client: {
+        age: null,
+        weight: null,
+        height: null,
+        gender: null,
+        goal: null
+      }
     }
+  },
+
+  methods: {
+    async personalizeUser() {
+      this.$axios.post('/api/user/personalize', this.client, {
+        headers: {Authorization: this.$auth.strategy.token.get()}
+      }).then(response => {
+        console.log(this.client)
+        this.$bvModal.hide('modal-user');
+        location.reload();
+      }).catch(error => {
+        console.log(error)
+      })
+    },
   }
 }
 </script>

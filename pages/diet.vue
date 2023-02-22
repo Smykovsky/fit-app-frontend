@@ -1,8 +1,10 @@
 <template>
   <div class='diet-container'>
     <div class='header-container'>
-      <span>Twój dzień</span>
-      <b-button class='meal-btn btn btn-success' v-b-modal.modal-meal>Dodaj posiłek</b-button>
+      <span> <font-awesome-icon class='icon' icon="fa-solid fa-utensils" /> Twój dzień</span>
+      <div class='meal-add'>
+        <b-button class='meal-btn btn btn-success' v-b-modal.modal-meal>Dodaj posiłek</b-button>
+      </div>
     </div>
 
     <div class='card-container'>

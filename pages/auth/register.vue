@@ -1,5 +1,7 @@
 <template>
   <div class='register'>
+    <Alert/>
+
     <div class='form-container'>
       <div class='title'>
         <h2>Rejestracja</h2>
@@ -58,10 +60,18 @@ export default {
       try {
         await this.$axios.post('/auth/register', this.credentials);
         await this.$router.push({name: 'login'})
+        await this.$store.dispatch('store/addAlert', 'Konto zostało założone. Gratulacje!')
       } catch (error) {
+        await this.$store.dispatch('store/addError', 'Rejestracja zakończona niepowodzeniem! ')
         console.log(error)
       }
-    }
+    },
+    removeAlert(payload) {
+      this.$store.dispatch('store/removeAlert', payload);
+    },
+    removeError(payload) {
+      this.$store.dispatch('store/removeError', payload);
+    },
   }
 }
 </script>

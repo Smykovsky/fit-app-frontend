@@ -1,7 +1,7 @@
 <template>
   <div class='dashboard-container'>
     <div class='header-container'>
-      <span>Dashboard</span>
+      <span> <font-awesome-icon icon="fa-solid fa-gauge" /> Dashboard</span>
       <div class='personalize'>
         <font-awesome-icon v-b-modal.modal-user icon="fa-solid fa-user" />
       </div>
@@ -15,7 +15,7 @@
         <div class='content'>
           <span>Aktualna waga:</span>
           <div class='equal'>
-            <span>90</span>
+            <span>{{this.userDetails.weight}}</span>
           </div>
         </div>
       </div>
@@ -26,7 +26,7 @@
         <div class='content'>
           <span>Twój aktualny cel:</span>
           <div class='equal'>
-            <span>Masa mięśniowa</span>
+            <span>{{this.userDetails.goal}}</span>
           </div>
         </div>
       </div>
@@ -37,7 +37,7 @@
         <div class='content'>
           <span>Wymagane kalorie: </span>
           <div class='equal'>
-            <span>1000</span>
+            <span>{{this.userDetails.caloriesIntakeGoal}}</span>
           </div>
         </div>
       </div>
@@ -48,19 +48,18 @@
         <div class='content'>
           <span>Zjedzone kalorie:</span>
           <div class='equal'>
-            <span>887</span>
+            <span>{{this.userDetails.caloriesEaten}}</span>
           </div>
         </div>
       </div>
       <div class='card card-calendar'>
         <div class='icon'>
           <font-awesome-icon class='ikona' icon="fa-solid fa-calendar-days" />
-          <i class="fa-solid fa-user"></i>
         </div>
         <div class='content'>
           <span>Dzisiaj:</span>
           <div class='equal'>
-            <span>20 luty 2023r</span>
+            <span>{{this.userDetails.today}}</span>
           </div>
         </div>
       </div>
@@ -86,29 +85,50 @@
 <script>
 export default {
   name: 'dashboard',
+  mounted() {
+    this.loadStats()
+  },
+
+  methods: {
+    async loadStats() {
+      this.$axios.get('/api/user/data', {
+        headers: {Authorization: this.$auth.strategy.token.get()}
+      }).then(response => {
+        this.userDetails = response.data;
+        this.pieData = [response.data.proteins, response.data.carbohydrates, response.data.fats];
+        this.radialBarData = [response.data.caloriesEaten];
+        console.log(this.pieData)
+
+        console.log(this.userDetails)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+  },
+
   data() {
     return {
-      selectedGender: null,
-      goal: null,
+      max: 200,
 
-      pieData: [30, 50, 70],
+      userDetails: [],
+
+      pieData: [],
       pieOptions: {
         chart: {
           type: 'pie'
         },
         dataLabels: {
           formatter: function(value) {
-            return Math.round(value, 2) + 'g'
+            return Math.round(value, 2) + '%'
           }
         },
         stroke: {
           curve: 'smooth'
         },
         labels: ['Białko', 'Węglowodany', 'Tłuszcze'],
-
       },
 
-      radialBarData: [70],
+      radialBarData: [],
       radialBarOptions: {
         chart: {
           type: 'radialBar',
@@ -131,11 +151,14 @@ export default {
                 color: '#111',
                 fontSize: '40px',
                 show: true
+              },
+              total: {
+                show: true,
+                label: 'TOTAL'
               }
             }
           }
         },
-        labels: ['Zjedzone kalorie: '],
       },
     }
   },

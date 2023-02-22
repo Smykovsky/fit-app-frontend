@@ -10,6 +10,7 @@ import diet from '@/pages/diet.vue'
 import progress from '@/pages/progress.vue'
 import help from '@/pages/help.vue'
 import contact from '@/pages/contact.vue'
+import ModalPersonalize from '@/components/ModalPersonalize.vue'
 
 Vue.use(Router)
 

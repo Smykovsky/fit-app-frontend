@@ -1,5 +1,6 @@
 <template>
   <div class='login'>
+  <Alert/>
     <div class='form-container'>
       <div class='title'>
         <h2>Logowanie</h2>
@@ -48,8 +49,16 @@ export default {
         await this.$router.push('/')
       } catch (error) {
         console.log(error)
+        await this.$store.dispatch('store/addError', error.response.data.message)
       }
-    }
+    },
+
+    removeAlert(payload) {
+      this.$store.dispatch('store/removeAlert', payload);
+    },
+    removeError(payload) {
+      this.$store.dispatch('store/removeError', payload);
+    },
   }
 }
 </script>

@@ -23,14 +23,16 @@ export default {
   ** Global CSS
   */
   css: [
-    '@fortawesome/fontawesome-svg-core/styles.css'
+    '@fortawesome/fontawesome-svg-core/styles.css',
+    'aos/dist/aos.css',
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
     {src: "~/plugins/fontawesome.js", ssr: false},
-    {src: "~/plugins/apex-charts.js", ssr: false}
+    {src: "~/plugins/apex-charts.js", ssr: false},
+    {src: "~/plugins/aos.js", ssr: false}
   ],
   /*
   ** Nuxt.js dev-modules
@@ -116,11 +118,8 @@ export default {
   /*
   ** Build configuration
   */
+
   build: {
-    /*
-    ** You can extend webpack config here
-    */
-    extend (config, ctx) {
-    }
+    vendor: ["aos"]
   }
 }
