@@ -8,23 +8,24 @@
     </div>
 
     <div class='card-container'>
-      <div v-for='meal in meals' :key='meal.id' class='diet-card'>
+      <div v-for='meal in meals' :items='meals' :key='meal.id' class='diet-card'>
         <div class='meal-title-container'>
-          <span v-model='editedMeal.name' @click='isHidden = !isHidden'>{{ meal.name }} / id: {{ meal.id }}</span>
+          <span @click='isHidden = !isHidden'>{{ meal.name }} / id: {{ meal.id }}</span>
           <b-button class='add-btn rounded-sm btn btn-success' v-b-modal.modal-item>+</b-button>
         </div>
         <div v-for='item in meal.foodItems' :key='item.id' class='diet-content' v-bind:class='{"d-none": isHidden}'>
             <div class='item-title-container'>
-              <font-awesome-icon icon="fa-solid fa-trash" />
-              <span v-model='editedMeal.foodItems.name'>{{ item.name }}, id: {{ item.id }}</span>
-              <font-awesome-icon icon="fa-solid fa-pen-to-square" />
+              <b-button><font-awesome-icon icon="fa-solid fa-trash" /></b-button>
+              <span>{{ item.name }}, id: {{ item.id }}</span>
+              <b-button v-b-modal.modal-itemEdit><font-awesome-icon icon="fa-solid fa-pen-to-square" /></b-button>
             </div>
             <div class='item-content-container'>
-              <span v-model='editedMeal.foodItems.calories' class='item-makro'>Kcal: {{ item.calories }}</span>
-              <span v-model='editedMeal.foodItems.carbohydrates' class='item-makro'>W: {{ item.carbohydrates }}</span>
-              <span v-model='editedMeal.foodItems.protein' class='item-makro'>B: {{ item.protein }}</span>
-              <span v-model='editedMeal.foodItems.fats' class='item-makro'>T: {{ item.fat }}</span>
+              <span class='item-makro'>Kcal: {{ item.calories }}</span>
+              <span class='item-makro'>W: {{ item.carbohydrates }}</span>
+              <span class='item-makro'>B: {{ item.protein }}</span>
+              <span class='item-makro'>T: {{ item.fat }}</span>
             </div>
+          {{meal.foodItems[0].id}}
         </div>
       </div>
 
@@ -32,6 +33,7 @@
 
 
     <ModalMealEdit/>
+    <ModalItemEdit/>
     <ModalMeal/>
     <ModalItem/>
 
@@ -46,15 +48,14 @@ export default {
       isHidden: false,
       meals: [],
 
-      editedMeal: {
+      credentials: {
+        foodItemId: 0,
+        id: 1,
         name: '',
-        foodItems: {
-          name: '',
-          calories: null,
-          carbohydrates: null,
-          protein: null,
-          fats: null
-        }
+        calories: 0,
+        protein: 0,
+        carbohydrates: 0,
+        fat: 0
       }
     }
   },
@@ -80,7 +81,6 @@ export default {
         headers: { Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.items = response.data
-        console.log(this.items)
       }).catch(error => {
         console.log(error)
       })

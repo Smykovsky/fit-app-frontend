@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-modal id="modal-mealEdit" title="Dodawanie posiłku" hide-footer>
+    <b-modal id="modal-mealEdit" title="Edytowanie posiłku" hide-footer>
       <b-form>
         <b-form-group
           id="input-group-1"
