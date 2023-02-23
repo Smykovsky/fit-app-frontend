@@ -100,6 +100,8 @@ export default {
       }).then(response => {
         this.userDetails = response.data;
         this.pieData = [response.data.proteins, response.data.carbohydrates, response.data.fats];
+        this.radialBarData = [this.caloriesToPercent(response.data.caloriesIntakeGoal, response.data.caloriesEaten)];
+        console.log(this.radialBarData)
         console.log(this.pieData)
         console.log(this.userDetails)
       }).catch(error => {
@@ -155,12 +157,13 @@ export default {
               },
               value: {
                 color: '#111',
-                fontSize: '40px',
-                show: true
+                fontSize: '35px',
+                show: true,
               },
               total: {
                 show: true,
-                label: 'TOTAL'
+                label: 'Zjedzone kalorie: ',
+                fontSize: '25px'
               }
             }
           }

@@ -8,20 +8,20 @@
     </div>
 
     <div class='card-container'>
-      <div class='diet-card'>
+      <div v-for='meal in meals' :key='meal.id' class='diet-card'>
         <div class='meal-title-container'>
-          <span @click='isHidden = !isHidden'>Śniadanie</span>
+          <span @click='isHidden = !isHidden'>{{ meal.name }}</span>
           <b-button class='add-btn rounded-sm btn btn-success' v-b-modal.modal-item>+</b-button>
         </div>
-        <div class='diet-content' v-bind:class='{"d-none": isHidden}'>
+        <div v-for='item in meal.foodItems' :key='item.id' class='diet-content' v-bind:class='{"d-none": isHidden}'>
             <div class='item-title-container'>
-              <span>Serek wiejski</span>
+              <span>{{ item.name }}</span>
             </div>
             <div class='item-content-container'>
-              <span class='item-makro'>Kcal: </span>
-              <span class='item-makro'>W: </span>
-              <span class='item-makro'>B: </span>
-              <span class='item-makro'>T: </span>
+              <span class='item-makro'>Kcal: {{ item.calories }}</span>
+              <span class='item-makro'>W: {{ item.carbohydrates }}</span>
+              <span class='item-makro'>B: {{ item.protein }}</span>
+              <span class='item-makro'>T: {{ item.fat }}</span>
             </div>
         </div>
       </div>
@@ -39,7 +39,35 @@ export default {
   name: 'diet',
   data() {
     return {
-      isHidden: false
+      isHidden: false,
+      meals: [],
+    }
+  },
+
+  mounted() {
+    this.loadMeals(),
+    this.loadFoodItems()
+  },
+
+  methods: {
+    loadMeals() {
+      this.$axios.get("/api/meal/get", {
+        headers: { Authorization: this.$auth.strategy.token.get()}
+      }).then(response => {
+        this.meals = response.data
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    loadFoodItems() {
+      this.$axios.get("/api/item/get", {
+        headers: { Authorization: this.$auth.strategy.token.get()}
+      }).then(response => {
+        this.items = response.data
+        console.log(this.items)
+      }).catch(error => {
+        console.log(error)
+      })
     }
   }
 }
