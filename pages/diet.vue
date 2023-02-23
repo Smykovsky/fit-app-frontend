@@ -84,15 +84,6 @@ export default {
         console.log(error)
       })
     },
-    hideElement(index) {
-      this.$set(this.meals, index, null);
-    },
-    isElementVisible(index) {
-      return this.meals[index] !== null;
-    },
-    showIndex() {
-      console.log(this.meals.id);
-    }
   }
 }
 </script>

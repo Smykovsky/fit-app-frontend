@@ -32,14 +32,16 @@ export default {
   plugins: [
     {src: "~/plugins/fontawesome.js", ssr: false},
     {src: "~/plugins/apex-charts.js", ssr: false},
-    {src: "~/plugins/aos.js", ssr: false}
+    {src: "~/plugins/aos.js", ssr: false},
+    {src: "~/plugins/vuetify.js", ssr: false},
   ],
   /*
   ** Nuxt.js dev-modules
   */
   buildModules: [
     '@nuxtjs/router',
-    '@nuxtjs/auth-next'
+    '@nuxtjs/auth-next',
+    '@nuxtjs/vuetify'
   ],
   /*
   ** Nuxt.js modules
@@ -120,6 +122,6 @@ export default {
   */
 
   build: {
-    vendor: ["aos"]
+    vendor: ["aos", "vuetify"]
   }
 }

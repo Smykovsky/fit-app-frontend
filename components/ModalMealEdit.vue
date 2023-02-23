@@ -50,10 +50,9 @@ export default {
   },
 
   methods: {
-    editItem (item) {
-      this.editedIndex = this.meals.indexOf(item)
-      this.editedItem = Object.assign({}, item)
-      this.dialogEdit = true
+    editItem (index) {
+      this.editedItem = this.meals[index];
+      console.log(this.editedItem);
     },
     save () {
       if (this.editedIndex > -1) {
