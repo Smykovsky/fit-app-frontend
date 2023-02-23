@@ -10,24 +10,27 @@
     <div class='card-container'>
       <div v-for='meal in meals' :key='meal.id' class='diet-card'>
         <div class='meal-title-container'>
-          <span @click='isHidden = !isHidden'>{{ meal.name }}</span>
+          <span v-model='editedMeal.name' @click='isHidden = !isHidden'>{{ meal.name }} / id: {{ meal.id }}</span>
           <b-button class='add-btn rounded-sm btn btn-success' v-b-modal.modal-item>+</b-button>
         </div>
         <div v-for='item in meal.foodItems' :key='item.id' class='diet-content' v-bind:class='{"d-none": isHidden}'>
             <div class='item-title-container'>
-              <span>{{ item.name }}</span>
+              <font-awesome-icon icon="fa-solid fa-trash" />
+              <span v-model='editedMeal.foodItems.name'>{{ item.name }}, id: {{ item.id }}</span>
+              <font-awesome-icon icon="fa-solid fa-pen-to-square" />
             </div>
             <div class='item-content-container'>
-              <span class='item-makro'>Kcal: {{ item.calories }}</span>
-              <span class='item-makro'>W: {{ item.carbohydrates }}</span>
-              <span class='item-makro'>B: {{ item.protein }}</span>
-              <span class='item-makro'>T: {{ item.fat }}</span>
+              <span v-model='editedMeal.foodItems.calories' class='item-makro'>Kcal: {{ item.calories }}</span>
+              <span v-model='editedMeal.foodItems.carbohydrates' class='item-makro'>W: {{ item.carbohydrates }}</span>
+              <span v-model='editedMeal.foodItems.protein' class='item-makro'>B: {{ item.protein }}</span>
+              <span v-model='editedMeal.foodItems.fats' class='item-makro'>T: {{ item.fat }}</span>
             </div>
         </div>
       </div>
 
     </div>
 
+    <ModalMealEdit/>
     <ModalMeal/>
     <ModalItem/>
 
@@ -41,6 +44,17 @@ export default {
     return {
       isHidden: false,
       meals: [],
+
+      editedMeal: {
+        name: '',
+        foodItems: {
+          name: '',
+          calories: null,
+          carbohydrates: null,
+          protein: null,
+          fats: null
+        }
+      }
     }
   },
 
@@ -55,6 +69,7 @@ export default {
         headers: { Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.meals = response.data
+        console.log(this.meals)
       }).catch(error => {
         console.log(error)
       })
@@ -68,6 +83,15 @@ export default {
       }).catch(error => {
         console.log(error)
       })
+    },
+    hideElement(index) {
+      this.$set(this.meals, index, null);
+    },
+    isElementVisible(index) {
+      return this.meals[index] !== null;
+    },
+    showIndex() {
+      console.log(this.meals.id);
     }
   }
 }

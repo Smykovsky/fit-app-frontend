@@ -12,6 +12,7 @@
           id="input-1"
           type="text"
           placeholder="np. Śniadanie"
+          v-model='newMeal.name'
           required
         ></b-form-input>
       </b-form-group>
@@ -19,7 +20,7 @@
         id='input-group-2'
       >
         <b-button class='btn btn-danger' @click="$bvModal.hide('modal-meal')">Zamknij</b-button>
-        <b-button class='btn btn-success'>Dodaj</b-button>
+        <b-button @click='addMeal' class='btn btn-success'>Dodaj</b-button>
       </b-form-group>
     </b-form>
   </b-modal>
@@ -28,7 +29,27 @@
 
 <script>
 export default {
-  name: 'ModalMeal'
+  name: 'ModalMeal',
+  data() {
+    return {
+      newMeal: {
+        name: ''
+      }
+    }
+  },
+
+  methods: {
+    addMeal() {
+      this.$axios.post('/api/meal/add', this.newMeal, {
+        headers: {Authorization: this.$auth.strategy.token.get()}
+      }).then(response => {
+        this.$bvModal.hide('modal-meal');
+        location.reload();
+      }).catch(error => {
+        console.log(error)
+      })
+    }
+  }
 }
 </script>
 
