@@ -13,11 +13,11 @@
           <span @click='isHidden = !isHidden'>{{ meal.name }} / id: {{ meal.id }}</span>
           <b-button class='add-btn rounded-sm btn btn-success' v-b-modal.modal-item>+</b-button>
         </div>
-        <div v-for='item in meal.foodItems' :key='item.id' class='diet-content' v-bind:class='{"d-none": isHidden}'>
+        <div v-for='(item, index) in meal.foodItems' :key='item.id' class='diet-content' v-bind:class='{"d-none": isHidden}'>
             <div class='item-title-container'>
               <b-button><font-awesome-icon icon="fa-solid fa-trash" /></b-button>
               <span>{{ item.name }}, id: {{ item.id }}</span>
-              <b-button v-b-modal.modal-itemEdit><font-awesome-icon icon="fa-solid fa-pen-to-square" /></b-button>
+              <b-button ref='btnShow' @click='edit(index)' ><font-awesome-icon  icon="fa-solid fa-pen-to-square" /></b-button>
             </div>
             <div class='item-content-container'>
               <span class='item-makro'>Kcal: {{ item.calories }}</span>
@@ -47,6 +47,17 @@ export default {
     return {
       isHidden: false,
       meals: [],
+
+      editedIndex: -1,
+      editedItem: {
+        foodItemId: 0,
+        id: 1,
+        name: '',
+        calories: 0,
+        protein: 0,
+        carbohydrates: 0,
+        fat: 0
+      },
 
       credentials: {
         foodItemId: 0,
@@ -85,6 +96,13 @@ export default {
         console.log(error)
       })
     },
+    edit(index) {
+      this.editedItem = this.meals[index]
+      console.log(this.editedItem)
+      console.log(this.editedItem.foodItems[index].id)
+      this.meals.splice(index, 1)
+      this.$root.$emit('bv::show::modal', 'modal-itemEdit', '#btnShow')
+    }
   }
 }
 </script>
