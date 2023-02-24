@@ -11,7 +11,7 @@
       <div v-for='meal in meals' :items='meals' :key='meal.id' class='diet-card'>
         <div class='meal-title-container'>
           <span @click='isHidden = !isHidden'>{{ meal.name }} / id: {{ meal.id }}</span>
-          <b-button class='add-btn rounded-sm btn btn-success' @click='add(meal.id)'>+</b-button>
+          <b-button class='add-btn rounded-sm btn btn-success' @click='add(meal)'>+</b-button>
         </div>
         <div v-for='(item, index) in meal.foodItems' :key='item.id' class='diet-content' v-bind:class='{"d-none": isHidden}'>
             <div class='item-title-container'>
@@ -213,7 +213,6 @@ export default {
 
       credentials: {
         mealId: 0,
-        id: 0,
         name: '',
         calories: 0,
         protein: 0,
@@ -272,11 +271,13 @@ export default {
     edit(item) {
       this.editedIndex = this.meals.indexOf(item)
       this.editedItem = Object.assign({}, item)
+      console.log(this.editedItem)
       this.modalItemEdit = true
     },
-    add(index) {
+    add(meal) {
       this.modalItemAdd = true
-      this.credentials.mealId = this.meals[index].id - 1
+      this.editedIndex = this.meals.indexOf(meal)
+      this.credentials.mealId = this.editedIndex + 1
       console.log(this.credentials.mealId)
     }
   }
