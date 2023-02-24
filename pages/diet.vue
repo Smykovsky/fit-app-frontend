@@ -34,6 +34,7 @@
             id="input-group-1"
             label="Id produktu"
             label-for="input-1"
+            class='d-none'
           >
             <b-form-input
               id="input-1"
@@ -113,15 +114,18 @@
         </b-form>
       </b-modal>
       <b-modal id="modal-item" v-model='modalItemAdd' title="Dodawanie produktu" hide-footer>
-        <b-form><b-form-group
+        <b-form>
+          <b-form-group
           id="input-group-1"
           label="Id posiłku"
           label-for="input-1"
+          class='d-none'
         >
           <b-form-input
             id="input-1"
             type="number"
             v-model='credentials.mealId'
+            disabled
             required
           ></b-form-input>
         </b-form-group>
