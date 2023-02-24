@@ -18,7 +18,7 @@
               <span>{{ item.name }}, id: {{ item.id }}</span>
               <div class='actions'>
                 <b-button class='actionButton' @click='edit(item)' ><font-awesome-icon  icon="fa-solid fa-pen-to-square" /></b-button>
-                <b-button class='actionButton'><font-awesome-icon icon="fa-solid fa-trash" /></b-button>
+                <b-button class='actionButton' @click='deleteItem(meal.id, item.id)'><font-awesome-icon icon="fa-solid fa-trash" /></b-button>
               </div>
             </div>
             <div class='item-content-container'>
@@ -218,6 +218,7 @@ export default {
 
       credentials: {
         mealId: 0,
+        id: 0,
         name: '',
         calories: 0,
         protein: 0,
@@ -268,6 +269,16 @@ export default {
       }).then(response => {
         this.modalItemAdd = false
         location.reload();
+      }).catch(error => {
+        console.log(error.response.data)
+      })
+    },
+    async deleteItem(mealId, itemId) {
+      this.$axios.post('api/item/delete', {mealId: mealId, itemId: itemId}, {
+        headers: {Authorization: this.$auth.strategy.token.get()}
+      }).then(response => {
+        location.reload()
+        console.log("usunieto")
       }).catch(error => {
         console.log(error.response.data)
       })
