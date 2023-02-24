@@ -16,8 +16,10 @@
         <div v-for='(item, index) in meal.foodItems' :key='item.id' class='diet-content' v-bind:class='{"d-none": isHidden}'>
             <div class='item-title-container'>
               <span>{{ item.name }}, id: {{ item.id }}</span>
-              <b-button @click='edit(item)' ><font-awesome-icon  icon="fa-solid fa-pen-to-square" /></b-button>
-              <b-button><font-awesome-icon icon="fa-solid fa-trash" /></b-button>
+              <div class='actions'>
+                <b-button class='actionButton' @click='edit(item)' ><font-awesome-icon  icon="fa-solid fa-pen-to-square" /></b-button>
+                <b-button class='actionButton'><font-awesome-icon icon="fa-solid fa-trash" /></b-button>
+              </div>
             </div>
             <div class='item-content-container'>
               <span class='item-makro'>Kcal: {{ item.calories }}</span>
@@ -187,7 +189,6 @@
         </b-form>
       </b-modal>
     </div>
-
 
     <ModalMealEdit/>
     <ModalMeal/>
