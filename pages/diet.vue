@@ -27,6 +27,7 @@
             </div>
         </div>
       </div>
+
       <b-modal id="modal-itemEdit" v-model='modalItemEdit' title="Edytowanie produktu" hide-footer>
         <b-form>
           <b-form-group
@@ -111,8 +112,6 @@
           </b-form-group>
         </b-form>
       </b-modal>
-
-
       <b-modal id="modal-item" v-model='modalItemAdd' title="Dodawanie produktu" hide-footer>
         <b-form><b-form-group
           id="input-group-1"
