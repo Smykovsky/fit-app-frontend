@@ -11,13 +11,13 @@
       <div v-for='meal in meals' :items='meals' :key='meal.id' class='diet-card'>
         <div class='meal-title-container'>
           <span @click='isHidden = !isHidden'>{{ meal.name }} / id: {{ meal.id }}</span>
-          <b-button class='add-btn rounded-sm btn btn-success' v-b-modal.modal-item>+</b-button>
+          <b-button class='add-btn rounded-sm btn btn-success' @click='add(meal.id)'>+</b-button>
         </div>
         <div v-for='(item, index) in meal.foodItems' :key='item.id' class='diet-content' v-bind:class='{"d-none": isHidden}'>
             <div class='item-title-container'>
-              <b-button><font-awesome-icon icon="fa-solid fa-trash" /></b-button>
               <span>{{ item.name }}, id: {{ item.id }}</span>
-              <b-button ref='btnShow' @click='edit(index)' ><font-awesome-icon  icon="fa-solid fa-pen-to-square" /></b-button>
+              <b-button @click='edit(item)' ><font-awesome-icon  icon="fa-solid fa-pen-to-square" /></b-button>
+              <b-button><font-awesome-icon icon="fa-solid fa-trash" /></b-button>
             </div>
             <div class='item-content-container'>
               <span class='item-makro'>Kcal: {{ item.calories }}</span>
@@ -25,17 +25,169 @@
               <span class='item-makro'>B: {{ item.protein }}</span>
               <span class='item-makro'>T: {{ item.fat }}</span>
             </div>
-          {{meal.foodItems[0].id}}
         </div>
       </div>
+      <b-modal id="modal-itemEdit" v-model='modalItemEdit' title="Edytowanie produktu" hide-footer>
+        <b-form>
+          <b-form-group
+            id="input-group-1"
+            label="Id produktu"
+            label-for="input-1"
+          >
+            <b-form-input
+              id="input-1"
+              type="number"
+              v-model='editedItem.id'
+              disabled
+              required
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group
+            id="input-group-1"
+            label="Podaj nazwę produktu"
+            label-for="input-1"
+          >
+            <b-form-input
+              id="input-1"
+              type="text"
+              v-model='editedItem.name'
+              placeholder="np. Serek wiejski"
+              required
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group
+            id="input-group-1"
+            label="Podaj ilość kalorii w produkcie"
+            label-for="input-1"
+          >
+            <b-form-input
+              id="input-1"
+              type="number"
+              v-model='editedItem.calories'
+              required
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group
+            id="input-group-1"
+            label="Podaj ilość węglowodanów w produkcie"
+            label-for="input-1"
+          >
+            <b-form-input
+              id="input-1"
+              type="number"
+              v-model='editedItem.carbohydrates'
+              required
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group
+            id="input-group-1"
+            label="Podaj ilość białka w produkcie"
+            label-for="input-1"
+          >
+            <b-form-input
+              id="input-1"
+              type="number"
+              v-model='editedItem.protein'
+              required
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group
+            id="input-group-1"
+            label="Podaj ilość tłuszczów w produkcie"
+            label-for="input-1"
+          >
+            <b-form-input
+              id="input-1"
+              type="number"
+              v-model='editedItem.fat'
+              required
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group
+            id='input-group-2'
+          >
+            <b-button class='btn btn-danger' @click="$bvModal.hide('modal-itemEdit')">Zamknij</b-button>
+            <b-button class='btn btn-success' @click='editItem'>Edytuj</b-button>
+          </b-form-group>
+        </b-form>
+      </b-modal>
 
+
+      <b-modal id="modal-item" v-model='modalItemAdd' title="Dodawanie produktu" hide-footer>
+        <b-form><b-form-group
+          id="input-group-1"
+          label="Id posiłku"
+          label-for="input-1"
+        >
+          <b-form-input
+            id="input-1"
+            type="number"
+            v-model='credentials.mealId'
+            required
+          ></b-form-input>
+        </b-form-group>
+          <b-form-group
+            id="input-group-1"
+            label="Podaj nazwę produktu"
+            label-for="input-1"
+          >
+            <b-form-input
+              id="input-1"
+              type="text"
+              placeholder="np. Serek wiejski"
+              v-model='credentials.name'
+              required
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group
+            id="input-group-1"
+            label="Podaj ilość węglowodanów w produkcie"
+            label-for="input-1"
+          >
+            <b-form-input
+              id="input-1"
+              type="number"
+              v-model='credentials.carbohydrates'
+              required
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group
+            id="input-group-1"
+            label="Podaj ilość białka w produkcie"
+            label-for="input-1"
+          >
+            <b-form-input
+              id="input-1"
+              type="number"
+              v-model='credentials.protein'
+              required
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group
+            id="input-group-1"
+            label="Podaj ilość tłuszczów w produkcie"
+            label-for="input-1"
+          >
+            <b-form-input
+              id="input-1"
+              type="number"
+              v-model='credentials.fat'
+              required
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group
+            id='input-group-2'
+          >
+            <b-button class='btn btn-danger' @click="$bvModal.hide('modal-item')">Zamknij</b-button>
+            <b-button class='btn btn-success' @click='addItem'>Dodaj</b-button>
+          </b-form-group>
+        </b-form>
+      </b-modal>
     </div>
 
 
     <ModalMealEdit/>
-    <ModalItemEdit/>
     <ModalMeal/>
-    <ModalItem/>
 
   </div>
 </template>
@@ -45,13 +197,14 @@ export default {
   name: 'diet',
   data() {
     return {
+      modalItemEdit: false,
+      modalItemAdd: false,
       isHidden: false,
       meals: [],
 
       editedIndex: -1,
       editedItem: {
-        foodItemId: 0,
-        id: 1,
+        id: 0,
         name: '',
         calories: 0,
         protein: 0,
@@ -60,8 +213,8 @@ export default {
       },
 
       credentials: {
-        foodItemId: 0,
-        id: 1,
+        mealId: 0,
+        id: 0,
         name: '',
         calories: 0,
         protein: 0,
@@ -96,12 +249,36 @@ export default {
         console.log(error)
       })
     },
-    edit(index) {
-      this.editedItem = this.meals[index]
-      console.log(this.editedItem)
-      console.log(this.editedItem.foodItems[index].id)
-      this.meals.splice(index, 1)
-      this.$root.$emit('bv::show::modal', 'modal-itemEdit', '#btnShow')
+    async editItem() {
+      this.$axios.post('api/item/update', this.editedItem,{
+        headers: {Authorization: this.$auth.strategy.token.get()}
+      }).then(response => {
+        this.modalItemEdit = false;
+        location.reload();
+      }).catch(error => {
+        console.log(error.response.data)
+      })
+    },
+    async addItem() {
+      this.$axios.post('api/item/add', this.credentials, {
+        headers: {Authorization: this.$auth.strategy.token.get()}
+      }).then(response => {
+        this.modalItemAdd = false
+        location.reload();
+      }).catch(error => {
+        console.log(error.response.data)
+      })
+    },
+
+    edit(item) {
+      this.editedIndex = this.meals.indexOf(item)
+      this.editedItem = Object.assign({}, item)
+      this.modalItemEdit = true
+    },
+    add(index) {
+      this.modalItemAdd = true
+      this.credentials.mealId = this.meals[index].id - 1
+      console.log(this.credentials.mealId)
     }
   }
 }
