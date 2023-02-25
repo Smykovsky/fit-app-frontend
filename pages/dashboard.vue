@@ -24,7 +24,7 @@
           <font-awesome-icon icon="fa-solid fa-check" />
         </div>
         <div class='content'>
-          <span>Twój aktualny cel:</span>
+          <span>Aktualny cel:</span>
           <div class='equal'>
             <span>{{this.userDetails.goal}}</span>
           </div>

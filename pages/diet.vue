@@ -10,12 +10,12 @@
     <div class='card-container'>
       <div v-for='meal in meals' :items='meals' :key='meal.id' class='diet-card'>
         <div class='meal-title-container'>
-          <span @click='isHidden = !isHidden'>{{ meal.name }} / id: {{ meal.id }}</span>
+          <span @click='isHidden = !isHidden'>{{ meal.name }}</span>
           <b-button class='add-btn rounded-sm btn btn-success' @click='add(meal)'>+</b-button>
         </div>
         <div v-for='(item, index) in meal.foodItems' :key='item.id' class='diet-content' v-bind:class='{"d-none": isHidden}'>
             <div class='item-title-container'>
-              <span>{{ item.name }}, id: {{ item.id }}</span>
+              <span>{{ item.name }}</span>
               <div class='actions'>
                 <b-button class='actionButton' @click='edit(item)' ><font-awesome-icon  icon="fa-solid fa-pen-to-square" /></b-button>
                 <b-button class='actionButton' @click='deleteItem(meal.id, item.id)'><font-awesome-icon icon="fa-solid fa-trash" /></b-button>
@@ -141,6 +141,18 @@
               type="text"
               placeholder="np. Serek wiejski"
               v-model='credentials.name'
+              required
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group
+            id="input-group-1"
+            label="Podaj ilość kalorii w produkcie"
+            label-for="input-1"
+          >
+            <b-form-input
+              id="input-1"
+              type="number"
+              v-model='credentials.calories'
               required
             ></b-form-input>
           </b-form-group>

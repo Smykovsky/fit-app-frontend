@@ -42,6 +42,11 @@ export default {
   name: 'progress',
   data() {
     return {
+      progres: {
+        newWeight: [],
+        date: []
+      },
+
       series : [{
         name: 'Progres',
         data: [10, 40, 50, 60, 100, 120]
@@ -63,6 +68,29 @@ export default {
       }
     }
   },
+
+  mounted() {
+    this.loadProgres()
+  },
+
+  methods: {
+    loadProgres() {
+      this.$axios.get("/api/progress/get", {
+        headers: { Authorization: this.$auth.strategy.token.get()}
+      }).then(response => {
+        this.progres = response.data
+        console.log(this.progres)
+        for (let i = 0; i < this.progres.length; i++) {
+          this.progres.newWeight = this.progres[i].newWeight
+          this.progres.date = this.progres[i].date
+          console.log(this.progres.newWeight)
+          console.log(this.progres.date)
+        }
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+  }
 }
 </script>
 
