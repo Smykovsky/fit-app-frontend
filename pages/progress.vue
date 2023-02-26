@@ -42,14 +42,13 @@ export default {
   name: 'progress',
   data() {
     return {
-      progres: {
-        newWeight: [],
-        date: []
-      },
+      progres: [],
+      newWeights: [],
+      dates: [],
 
       series : [{
         name: 'Progres',
-        data: [10, 40, 50, 60, 100, 120]
+        data: this.newWeights
       }],
       chartOptions: {
         chart: {
@@ -63,7 +62,7 @@ export default {
           enabled: false
         },
         xaxis: {
-          categories: ['2023-01-01', '2023-01-15', '2023-02-01', '2023-02-06', '2023-02-14', '2023-02-20']
+          categories: this.dates
         }
       }
     }
@@ -79,13 +78,10 @@ export default {
         headers: { Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.progres = response.data
-        console.log(this.progres)
-        for (let i = 0; i < this.progres.length; i++) {
-          this.progres.newWeight = this.progres[i].newWeight
-          this.progres.date = this.progres[i].date
-          console.log(this.progres.newWeight)
-          console.log(this.progres.date)
-        }
+        this.dates = this.progres.map(date => date.date)
+        this.newWeights = this.progres.map(date => date.newWeight)
+        console.log(this.dates)
+        console.log(this.newWeights)
       }).catch(error => {
         console.log(error)
       })
