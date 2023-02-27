@@ -148,22 +148,21 @@ export default {
               size: "80%"
             },
             dataLabels: {
-              showOn: 'always',
+              show: true,
               name: {
-                offsetY: -10,
-                show: true,
                 color: '#888',
                 fontSize: '20px'
               },
               value: {
                 color: '#111',
-                fontSize: '35px',
-                show: true,
+                fontSize: '34px',
+                show: true
               },
               total: {
                 show: true,
                 label: 'Zjedzone kalorie: ',
-                fontSize: '25px'
+                fontSize: '25px',
+
               }
             }
           }

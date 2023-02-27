@@ -11,7 +11,7 @@
       <div v-for='meal in meals' :items='meals' :key='meal.id' class='diet-card'>
         <div class='meal-title-container'>
           <span @click='isHidden = !isHidden'>{{ meal.name }}</span>
-          <b-button class='add-btn rounded-sm btn btn-success' @click='add(meal)'>+</b-button>
+          <b-button @click='add(meal)'><font-awesome-icon icon="fa-solid fa-plus" /></b-button>
         </div>
         <div v-for='(item, index) in meal.foodItems' :key='item.id' class='diet-content' v-bind:class='{"d-none": isHidden}'>
             <div class='item-title-container'>
@@ -270,7 +270,7 @@ export default {
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.modalItemEdit = false;
-        location.reload();
+        this.loadMeals()
       }).catch(error => {
         console.log(error.response.data)
       })
@@ -280,7 +280,7 @@ export default {
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.modalItemAdd = false
-        location.reload();
+        this.loadMeals()
       }).catch(error => {
         console.log(error.response.data)
       })

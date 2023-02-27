@@ -44,11 +44,21 @@ export default {
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.$bvModal.hide('modal-meal');
-        location.reload();
+        location.reload()
       }).catch(error => {
         console.log(error)
       })
-    }
+    },
+    loadMeals() {
+      this.$axios.get("/api/meal/get", {
+        headers: { Authorization: this.$auth.strategy.token.get()}
+      }).then(response => {
+        this.meals = response.data
+        console.log(this.meals)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
   }
 }
 </script>
