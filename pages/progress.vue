@@ -13,7 +13,7 @@
       </div>
     </div>
 
-  <b-modal id="modal-progres" title="Wprowadź nową wagę" hide-footer>
+  <b-modal id="modal-progres" title="Wprowadź nową wagę" v-model='progresModal' hide-footer>
     <b-form>
       <b-form-group
         id="input-group-1"
@@ -23,6 +23,7 @@
         <b-form-input
           id="input-1"
           type="number"
+          v-model='credentials.newWeight'
           required
         ></b-form-input>
       </b-form-group>
@@ -30,7 +31,7 @@
         id='input-group-2'
       >
         <b-button class='btn btn-danger' @click="$bvModal.hide('modal-progres')">Zamknij</b-button>
-        <b-button class='btn btn-success'>Dodaj</b-button>
+        <b-button class='btn btn-success' @click='addUserProgress'>Dodaj</b-button>
       </b-form-group>
     </b-form>
   </b-modal>
@@ -46,9 +47,14 @@ export default {
       newWeights: [],
       dates: [],
 
-      series : [{
-        name: 'Progres',
-        data: this.newWeights
+      progresModal: false,
+
+      credentials: {
+        newWeight: null
+      },
+
+      series: [{
+        data: []
       }],
       chartOptions: {
         chart: {
@@ -62,7 +68,7 @@ export default {
           enabled: false
         },
         xaxis: {
-          categories: this.dates
+          categories: []
         }
       }
     }
@@ -80,12 +86,33 @@ export default {
         this.progres = response.data
         this.dates = this.progres.map(date => date.date)
         this.newWeights = this.progres.map(date => date.newWeight)
-        console.log(this.dates)
-        console.log(this.newWeights)
+
+        this.chartOptions = {
+          xaxis: {
+            categories: this.dates
+          },
+        }
+        this.series = [
+          {
+            data: this.newWeights
+          }
+        ]
       }).catch(error => {
         console.log(error)
       })
     },
+
+    addUserProgress() {
+      this.$axios.post("/api/progress/add", this.credentials, {
+        headers: { Authorization: this.$auth.strategy.token.get()}
+      }).then(response => {
+        this.loadProgres()
+        this.credentials.newWeight = ''
+        this.progresModal = false
+      }).catch(error => {
+        console.log(error)
+      })
+    }
   }
 }
 </script>
