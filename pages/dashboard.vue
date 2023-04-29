@@ -110,16 +110,14 @@ export default {
     },
 
     caloriesToPercent(max, now) {
-      return (now * 100) / max;
+      return Math.round((now * 100) / max, 2);
     }
   },
 
   data() {
     return {
       max: 200,
-
       userDetails: [],
-
       pieData: [],
       pieOptions: {
         chart: {
@@ -162,7 +160,6 @@ export default {
                 show: true,
                 label: 'Zjedzone kalorie: ',
                 fontSize: '25px',
-
               }
             }
           }
