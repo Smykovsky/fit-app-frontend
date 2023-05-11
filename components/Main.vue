@@ -1,8 +1,6 @@
 <template>
   <div class='routes-section'>
-    <main>
       <nuxt/>
-    </main>
   </div>
 </template>
 
