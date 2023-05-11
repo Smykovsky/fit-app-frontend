@@ -218,7 +218,7 @@ export default {
       isHidden: false,
       meals: [],
 
-      editedIndex: -1,
+      editedIndex: null,
       editedItem: {
         id: 0,
         name: '',
@@ -297,9 +297,8 @@ export default {
     },
 
     edit(item) {
-      this.editedIndex = this.meals.indexOf(item)
       this.editedItem = Object.assign({}, item)
-      console.log(this.editedItem)
+      console.log(item.id)
       this.modalItemEdit = true
     },
     add(meal) {
