@@ -1,5 +1,5 @@
 <template>
-  <div class='progres-container'>
+  <div class='progress-container'>
     <div class='header-container'>
       <span> <font-awesome-icon class='icon' icon="fa-solid fa-weight-scale" /> Historia wagi</span>
       <div class='progres-add'>
