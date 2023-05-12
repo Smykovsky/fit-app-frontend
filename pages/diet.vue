@@ -287,6 +287,7 @@ export default {
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.modalItemAdd = false
+        this.credentials = {};
         this.loadMeals()
       }).catch(error => {
         console.log(error.response.data)
@@ -296,7 +297,7 @@ export default {
       this.$axios.post('api/item/delete', {mealId: mealId, itemId: itemId}, {
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
-        location.reload()
+        this.loadMeals()
         console.log("usunieto")
       }).catch(error => {
         console.log(error.response.data)
