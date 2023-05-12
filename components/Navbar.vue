@@ -18,21 +18,18 @@
           <font-awesome-icon class='icon' icon="fa-solid fa-weight-scale" />
           <span class='nav-item'>Mój progres</span>
         </router-link></li>
-
-        <div class='logout'>
-          <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'help'}">
-            <font-awesome-icon class='icon' icon="fa-solid fa-circle-question" />
-            <span class='nav-item'>Potrzebujesz pomocy?</span>
-          </router-link></li>
-          <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'contact'}">
-            <font-awesome-icon class='icon' icon="fa-solid fa-phone" />
-            <span class='nav-item'>Kontakt</span>
-          </router-link></li>
-          <li @click='logout'  class='dashboard-li'><a class="text-decoration-none">
-            <font-awesome-icon class='icon' icon="fa-solid fa-right-from-bracket" />
-            <span class='nav-item'>Wyloguj się</span>
-          </a></li>
-        </div>
+        <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'help'}">
+          <font-awesome-icon class='icon' icon="fa-solid fa-circle-question" />
+          <span class='nav-item'>Potrzebujesz pomocy?</span>
+        </router-link></li>
+        <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'contact'}">
+          <font-awesome-icon class='icon' icon="fa-solid fa-phone" />
+          <span class='nav-item'>Kontakt</span>
+        </router-link></li>
+        <li @click='logout'  class='dashboard-li'><a class="text-decoration-none">
+          <font-awesome-icon class='icon' icon="fa-solid fa-right-from-bracket" />
+          <span class='nav-item'>Wyloguj się</span>
+        </a></li>
       </ul>
     </nav>
   </div>

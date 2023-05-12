@@ -9,8 +9,15 @@
 
     <div class='card-container'>
       <div v-for='meal in meals' :items='meals' :key='meal.id' class='diet-card'>
+        <div class='minimalize' v-if='isHidden'>
+          <font-awesome-icon @click='isHidden = !isHidden' :icon="['fas', 'caret-down']" />
+        </div>
+        <div class='minimalize' v-if='!isHidden'>
+          <font-awesome-icon @click='isHidden = !isHidden' :icon="['fas', 'window-minimize']" />
+        </div>
+
         <div class='meal-title-container'>
-          <span @click='isHidden = !isHidden'>{{ meal.name }}</span>
+          <span>{{ meal.name }}</span>
           <b-button class='btn-add' @click='add(meal)'><font-awesome-icon icon="fa-solid fa-plus" /></b-button>
         </div>
         <div v-for='(item, index) in meal.foodItems' :key='item.id' class='diet-content' v-bind:class='{"d-none": isHidden}'>
