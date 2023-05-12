@@ -5,7 +5,6 @@
         <li><a class='logo'>
           <img src='/logo.jpg' alt=''>
         </a></li>
-
         <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'dashboard'}">
           <font-awesome-icon class='icon' icon="fa-solid fa-gauge" />
           <span class='nav-item'>Dashboard</span>
