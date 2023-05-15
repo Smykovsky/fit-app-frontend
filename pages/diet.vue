@@ -19,6 +19,7 @@
         <div class='meal-title-container'>
           <span>{{ meal.name }}</span>
           <b-button class='btn-add' @click='add(meal)'><font-awesome-icon icon="fa-solid fa-plus" /></b-button>
+          <b-button class='btn-add' @click='openNewModal(meal)'><font-awesome-icon icon="fa-solid fa-plus" /></b-button>
         </div>
         <div v-for='(item, index) in meal.foodItems' :key='item.id' class='diet-content' v-bind:class='{"d-none": isHidden}'>
             <div class='item-title-container'>
@@ -36,6 +37,8 @@
             </div>
         </div>
       </div>
+
+
 
       <b-modal id="modal-itemEdit" v-model='modalItemEdit' title="Edytowanie produktu" hide-footer>
         <b-form>
@@ -204,6 +207,7 @@
           >
             <b-button class='btn btn-danger' @click="$bvModal.hide('modal-item')">Zamknij</b-button>
             <b-button class='btn btn-success' @click='addItem'>Dodaj</b-button>
+            <b-button class='btn btn-success' @click='openNewModal'>Dodaj z przepisu</b-button>
           </b-form-group>
         </b-form>
       </b-modal>
@@ -211,6 +215,8 @@
 
     <ModalMealEdit/>
     <ModalMeal/>
+    <ModalAddItemFromExisiting/>
+
 
   </div>
 </template>
@@ -233,6 +239,7 @@ export default {
       selected: "test",
       modalItemEdit: false,
       modalItemAdd: false,
+      modalItemAddFromExisting: false,
       isHidden: false,
       meals: [],
 
@@ -323,6 +330,13 @@ export default {
     },
     add(meal) {
       this.modalItemAdd = true
+      this.editedIndex = this.meals.indexOf(meal)
+      this.credentials.mealId = this.editedIndex + 1
+      console.log(this.credentials.mealId)
+    },
+    openNewModal(meal) {
+      this.$bvModal.hide('modal-item');
+      this.$bvModal.show("modal-addFromExisting");
       this.editedIndex = this.meals.indexOf(meal)
       this.credentials.mealId = this.editedIndex + 1
       console.log(this.credentials.mealId)
