@@ -18,8 +18,8 @@
 
         <div class='meal-title-container'>
           <span>{{ meal.name }}</span>
-          <b-button class='btn-add' @click='add(meal)'><font-awesome-icon icon="fa-solid fa-plus" /></b-button>
-          <b-button class='btn-add' @click='openNewModal(meal)'><font-awesome-icon icon="fa-solid fa-plus" /></b-button>
+          <b-button class='btn-add' @click='add(meal)'>Dodaj produkt</b-button>
+          <b-button class='btn-add' @click='addFromExisting(meal)'>Dodaj z przepisu</b-button>
         </div>
         <div v-for='(item, index) in meal.foodItems' :key='item.id' class='diet-content' v-bind:class='{"d-none": isHidden}'>
             <div class='item-title-container'>
@@ -207,7 +207,88 @@
           >
             <b-button class='btn btn-danger' @click="$bvModal.hide('modal-item')">Zamknij</b-button>
             <b-button class='btn btn-success' @click='addItem'>Dodaj</b-button>
-            <b-button class='btn btn-success' @click='openNewModal'>Dodaj z przepisu</b-button>
+          </b-form-group>
+        </b-form>
+      </b-modal>
+
+      <b-modal id="modal-addFromExisting" title='Dodawanie produktu z przepisu' hide-footer>
+        <b-form>
+          <b-form-group
+            id="input-group-1"
+            label="Wybierz przepis"
+            label-for="input-1"
+          >
+            <b-form-select v-model='selected' value-field='id' @change='updateInputs'>
+              <b-form-select-option v-for='item in items' :key='item.id' :value='item.id'>{{ item.name }}</b-form-select-option>
+            </b-form-select>
+          </b-form-group>
+          <b-form-group
+            id="input-group-1"
+            label="Id posiłku"
+            label-for="input-1"
+            class='d-none'
+          >
+            <b-form-input
+              id="input-1"
+              type="number"
+              v-model='credentials.mealId'
+              disabled
+              required
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group
+            id="input-group-1"
+            label="Ilość kalorii"
+            label-for="input-1"
+          >
+            <b-form-input
+              id="input-1"
+              type="text"
+              v-model='credentials.calories'
+              required
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group
+            id="input-group-1"
+            label="Ilość węglowodanów"
+            label-for="input-1"
+          >
+            <b-form-input
+              id="input-1"
+              type="text"
+              v-model='credentials.carbohydrates'
+              required
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group
+            id="input-group-1"
+            label="Ilość białka"
+            label-for="input-1"
+          >
+            <b-form-input
+              id="input-1"
+              type="text"
+              v-model='credentials.protein'
+              required
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group
+            id="input-group-1"
+            label="Ilość tłuszczy"
+            label-for="input-1"
+          >
+            <b-form-input
+              id="input-1"
+              type="text"
+              v-model='credentials.fat'
+              required
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group
+            id='input-group-2'
+          >
+            <b-button class='btn btn-danger' @click="$bvModal.hide('modal-addFromExisting')">Zamknij</b-button>
+            <b-button class='btn btn-success' @click='addItemFromExistingRecipe'>Dodaj</b-button>
           </b-form-group>
         </b-form>
       </b-modal>
@@ -215,9 +296,6 @@
 
     <ModalMealEdit/>
     <ModalMeal/>
-    <ModalAddItemFromExisiting/>
-
-
   </div>
 </template>
 
@@ -226,6 +304,9 @@ export default {
   name: 'diet',
   data() {
     return {
+      items: [],
+      options: [],
+      selected: null,
       recipes: [
         {
           name: '',
@@ -236,7 +317,6 @@ export default {
           fat: null,
         }
       ],
-      selected: "test",
       modalItemEdit: false,
       modalItemAdd: false,
       modalItemAddFromExisting: false,
@@ -265,10 +345,14 @@ export default {
     }
   },
 
+  created() {
+    this.loadRecipes()
+  },
 
   mounted() {
     this.loadMeals(),
-    this.loadFoodItems()
+    this.loadFoodItems(),
+    this.loadRecipes()
   },
 
   methods: {
@@ -322,6 +406,40 @@ export default {
         console.log(error.response.data)
       })
     },
+    loadRecipes() {
+      this.$axios.get("/api/recipe/get", {
+        headers: {Authorization: this.$auth.strategy.token.get()}
+      }).then(response => {
+        this.items = response.data
+      }).catch(error => {
+        console.log(error);
+      })
+    },
+    updateInputs() {
+      this.$axios.get(`/api/recipe/get/${this.selected}`, {
+        headers: {Authorization: this.$auth.strategy.token.get()}
+      }).then(response => {
+        const item = response.data;
+        this.credentials.name = item.name;
+        this.credentials.calories = item.kcal;
+        this.credentials.carbohydrates = item.carbohydrates;
+        this.credentials.protein = item.protein;
+        this.credentials.fat = item.fat;
+        console.log(this.credentials)
+      });
+    },
+    async addItemFromExistingRecipe() {
+      this.$axios.post('api/item/add', this.credentials, {
+        headers: {Authorization: this.$auth.strategy.token.get()}
+      }).then(response => {
+        this.modalItemAdd = false
+        this.credentials = {};
+        this.$bvModal.hide('modal-addFromExisting');
+        this.loadMeals()
+      }).catch(error => {
+        console.log(error.response.data)
+      })
+    },
 
     edit(item) {
       this.editedItem = Object.assign({}, item)
@@ -334,7 +452,7 @@ export default {
       this.credentials.mealId = this.editedIndex + 1
       console.log(this.credentials.mealId)
     },
-    openNewModal(meal) {
+    addFromExisting(meal) {
       this.$bvModal.hide('modal-item');
       this.$bvModal.show("modal-addFromExisting");
       this.editedIndex = this.meals.indexOf(meal)
