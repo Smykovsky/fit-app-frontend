@@ -4,7 +4,6 @@
       <Navbar/>
       <Main/>
     </div>
-    <Footbar/>
   </div>
 </template>
 

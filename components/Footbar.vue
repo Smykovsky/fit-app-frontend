@@ -1,15 +1,15 @@
-<template>
-  <div class='footbar'>
+<!--<template>-->
+<!--  <div class='footbar'>-->
 
-  </div>
-</template>
+<!--  </div>-->
+<!--</template>-->
 
-<script>
-export default {
-  name: 'Footbar'
-}
-</script>
+<!--<script>-->
+<!--export default {-->
+<!--  name: 'Footbar'-->
+<!--}-->
+<!--</script>-->
 
-<style scoped>
+<!--<style scoped>-->
 
-</style>
+<!--</style>-->
