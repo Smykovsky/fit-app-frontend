@@ -220,6 +220,17 @@ export default {
   name: 'diet',
   data() {
     return {
+      recipes: [
+        {
+          name: '',
+          description: '',
+          kcal: null,
+          carbohydrates: null,
+          protein: null,
+          fat: null,
+        }
+      ],
+      selected: "test",
       modalItemEdit: false,
       modalItemAdd: false,
       isHidden: false,
@@ -246,6 +257,7 @@ export default {
       }
     }
   },
+
 
   mounted() {
     this.loadMeals(),

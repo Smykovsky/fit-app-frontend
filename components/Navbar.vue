@@ -17,6 +17,10 @@
           <font-awesome-icon class='icon' icon="fa-solid fa-weight-scale" />
           <span class='nav-item'>Mój progres</span>
         </router-link></li>
+        <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'recipes'}">
+          <font-awesome-icon class='icon' icon="fa-solid fa-utensils" />
+          <span class='nav-item'>Przepisy</span>
+        </router-link></li>
         <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'help'}">
           <font-awesome-icon class='icon' icon="fa-solid fa-circle-question" />
           <span class='nav-item'>Potrzebujesz pomocy?</span>
