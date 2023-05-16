@@ -200,7 +200,7 @@
               v-model='credentials.fat'
               required
             ></b-form-input>
-          </b-form-group>
+          </b-form-group><hr>
           <b-form-group
             id="input-group-1"
             label="Załaduj dane z przepisu"
