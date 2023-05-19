@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import alert from './Alert.vue'
 
 export default {
   name: 'AlertEmail',
