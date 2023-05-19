@@ -13,20 +13,7 @@
 <script>
 
 export default {
-  name: 'AlertEmail',
-  computed: {
-    alert() {
-      return alert
-    }
-  },
-  methods: {
-    removeAlert(payload) {
-      this.$store.dispatch('store/removeAlert', payload);
-    },
-    removeError(payload) {
-      this.$store.dispatch('store/removeError', payload);
-    },
-  }
+  name: 'AlertEmail'
 }
 </script>
 

@@ -66,7 +66,6 @@ export default {
         this.emailData = {}
       }).catch(error => {
         this.$store.dispatch('store/addError', "Wystąpił błąd podczas wysyłania wiadomości email :(")
-        console.log(error)
       })
     }
   }
