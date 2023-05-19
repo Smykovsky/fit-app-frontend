@@ -28,11 +28,15 @@
         <div class='contact-header'>
           <span>Wyślij wiadomość!</span>
         </div>
+
         <div class='form'>
-          <b-form-input  placeholder="Podaj swoję imię"></b-form-input>
-          <b-form-input type='e-mail' placeholder="Wprowadź swój adres e-mail"></b-form-input>
-          <b-form-textarea placeholder='wprowadź swoją wiadomość'></b-form-textarea>
-          <b-button class='btn btn-primary'>Wyślij</b-button>
+          <b-form>
+            <b-form-input v-model='emailData.from' type='e-mail' placeholder="Wprowadź swój adres e-mail"></b-form-input>
+            <b-form-input v-model='emailData.subject' placeholder="Podaj swoję imię"></b-form-input>
+            <b-form-textarea v-model='emailData.body' placeholder='wprowadź swoją wiadomość'></b-form-textarea>
+            <b-button @click='sendEmail' class='btn btn-primary'>Wyślij</b-button>
+          </b-form>
+          <AlertEmail/>
         </div>
       </div>
     </div>
@@ -41,7 +45,31 @@
 
 <script>
 export default {
-  name: 'contact'
+  name: 'contact',
+  data() {
+    return {
+      emailData: {
+        from: '',
+        subject: '',
+        body: ''
+      },
+    }
+  },
+
+  methods: {
+    sendEmail() {
+      this.$axios.post('/api/send', this.emailData, {
+        headers: {Authorization: this.$auth.strategy.token.get()}
+      }).then(response => {
+        this.$store.dispatch('store/addAlert', "Pomyślnie wysłano wiadomość email! Dziękujemy :)")
+        console.log("Wysłano wiadomość o treści: " + this.emailData.body)
+        this.emailData = {}
+      }).catch(error => {
+        this.$store.dispatch('store/addError', "Wystąpił błąd podczas wysyłania wiadomości email :(")
+        console.log(error)
+      })
+    }
+  }
 }
 </script>
 
