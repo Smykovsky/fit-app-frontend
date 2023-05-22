@@ -22,15 +22,15 @@
               <span>{{ recipe.kcal }}</span>
             </div>
             <div class='count'>
-              <span>Węglowodany</span>
+              <span>W</span>
               <span>{{ recipe.carbohydrates }}g</span>
             </div>
             <div class='count'>
-              <span>Białko</span>
+              <span>B</span>
               <span>{{ recipe.protein }}g</span>
             </div>
             <div class='count'>
-              <span>Tłuszcze</span>
+              <span>T</span>
               <span>{{ recipe.fat }}g</span>
             </div>
           </div>
