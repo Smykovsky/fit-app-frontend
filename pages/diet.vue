@@ -8,7 +8,7 @@
     </div>
 
     <div class='card-container'>
-      <b-calendar v-model="dateObject.pickedDate" @context="handleDayClick" :date-format-options="{day: '2-digit', month: 'numeric', year: 'numeric'}" locale="en-US"></b-calendar>
+      <b-calendar :hide-header="true" v-model="dateObject.pickedDate" @context="handleDayClick" :date-format-options="{day: '2-digit', month: 'numeric', year: 'numeric'}" locale="pl"></b-calendar>
       <div v-for='meal in meals' :items='meals' :key='meal.id' class='diet-card'>
         <div class='minimalize' v-if='isHidden'>
           <font-awesome-icon @click='isHidden = !isHidden' :icon="['fas', 'caret-down']" />
