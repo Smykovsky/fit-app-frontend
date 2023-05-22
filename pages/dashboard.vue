@@ -3,7 +3,7 @@
     <div class='header-container'>
       <span> <font-awesome-icon icon="fa-solid fa-gauge" /> Dashboard</span>
       <div class='personalize'>
-        <font-awesome-icon v-b-modal.modal-user icon="fa-solid fa-user" />
+        <span><font-awesome-icon v-b-modal.modal-user icon="fa-solid fa-user" /></span>
       </div>
     </div>
 
