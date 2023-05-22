@@ -5,10 +5,15 @@
       <div class='meal-add'>
         <b-button class='meal-btn btn btn-success' v-b-modal.modal-meal>Dodaj posiłek</b-button>
       </div>
+      <div class="calendar-button">
+        <font-awesome-icon @click="display = !display" icon="fa-solid fa-calendar" />
+      </div>
     </div>
 
     <div class='card-container'>
-      <b-calendar :hide-header="true" v-model="dateObject.pickedDate" @context="handleDayClick" :date-format-options="{day: '2-digit', month: 'numeric', year: 'numeric'}" locale="pl"></b-calendar>
+      <div v-if="display" class="calendar-container">
+        <b-calendar block style="width: 100%" class="calendar" :hide-header="true" v-model="dateObject.pickedDate" @context="handleDayClick" :date-format-options="{day: '2-digit', month: 'numeric', year: 'numeric'}" locale="pl"></b-calendar>
+      </div>
       <div v-for='meal in meals' :items='meals' :key='meal.id' class='diet-card'>
         <div class='minimalize' v-if='isHidden'>
           <font-awesome-icon @click='isHidden = !isHidden' :icon="['fas', 'caret-down']" />
@@ -236,6 +241,7 @@ export default {
         id: 0,
         pickedDate: ''
       },
+      display: false,
       context: null,
       items: [],
       options: [],
