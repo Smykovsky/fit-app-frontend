@@ -8,6 +8,7 @@
     </div>
 
     <div class='card-container'>
+      <b-calendar v-model="dateObject.pickedDate" @context="handleDayClick" :date-format-options="{day: '2-digit', month: 'numeric', year: 'numeric'}" locale="en-US"></b-calendar>
       <div v-for='meal in meals' :items='meals' :key='meal.id' class='diet-card'>
         <div class='minimalize' v-if='isHidden'>
           <font-awesome-icon @click='isHidden = !isHidden' :icon="['fas', 'caret-down']" />
@@ -231,6 +232,11 @@ export default {
   name: 'diet',
   data() {
     return {
+      dateObject: {
+        id: 0,
+        pickedDate: ''
+      },
+      context: null,
       items: [],
       options: [],
       selected: null,
@@ -283,12 +289,21 @@ export default {
   },
 
   methods: {
+    async handleDayClick(day) {
+      console.log(this.dateObject.pickedDate)
+      this.$axios.get("/api/meal/getByDate", this.dateObject.pickedDate, {
+        headers: { Authorization: this.$auth.strategy.token.get()}
+      }).then(response => {
+        console.log(response.data)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
     loadMeals() {
       this.$axios.get("/api/meal/get", {
         headers: { Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.meals = response.data
-        console.log(this.meals)
       }).catch(error => {
         console.log(error)
       })
@@ -303,7 +318,7 @@ export default {
       })
     },
     async editItem() {
-      this.$axios.post('api/item/update', this.editedItem,{
+      this.$axios.post('/api/item/update', this.editedItem,{
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.modalItemEdit = false;
@@ -313,7 +328,7 @@ export default {
       })
     },
     async addItem() {
-      this.$axios.post('api/item/add', this.credentials, {
+      this.$axios.post('/api/item/add', this.credentials, {
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.modalItemAdd = false
@@ -324,11 +339,10 @@ export default {
       })
     },
     async deleteItem(mealId, itemId) {
-      this.$axios.post('api/item/delete', {mealId: mealId, itemId: itemId}, {
+      this.$axios.post('/api/item/delete', {mealId: mealId, itemId: itemId}, {
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.loadMeals()
-        console.log("usunieto")
       }).catch(error => {
         console.log(error.response.data)
       })
@@ -352,7 +366,6 @@ export default {
         this.credentials.carbohydrates = item.carbohydrates;
         this.credentials.protein = item.protein;
         this.credentials.fat = item.fat;
-        console.log(this.credentials)
       });
     },
 
