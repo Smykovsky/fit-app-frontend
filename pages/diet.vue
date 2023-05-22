@@ -291,9 +291,10 @@ export default {
   methods: {
     async handleDayClick(day) {
       console.log(this.dateObject.pickedDate)
-      this.$axios.get("/api/meal/getByDate", this.dateObject.pickedDate, {
+      this.$axios.get(`/api/meal/getByDate/${this.dateObject.pickedDate}`, {
         headers: { Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
+        this.meals = response.data
         console.log(response.data)
       }).catch(error => {
         console.log(error)
