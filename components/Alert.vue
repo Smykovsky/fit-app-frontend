@@ -2,7 +2,7 @@
   <div class='alerts-container'>
     <div class='alerts' v-for="alert in $store.getters['store/getAlerts']" data-aos='flip-left' data-aos-delay='300'>
       <div class='icon'>
-        <font-awesome-icon icon="fa-solid fa-check" />
+        <span><font-awesome-icon icon="fa-solid fa-check" /></span>
       </div>
       <div class="closeMessage" @click="removeAlert(alert)">
         <font-awesome-icon icon="fa-solid fa-x"/>
