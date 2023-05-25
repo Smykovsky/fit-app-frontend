@@ -1,9 +1,7 @@
 <template>
   <div class='app'>
-    <div class='content'>
-      <Navbar/>
-      <Main/>
-    </div>
+    <Navbar/>
+    <Main/>
   </div>
 </template>
 
