@@ -293,7 +293,8 @@ export default {
   mounted() {
     this.loadMeals(),
     this.loadFoodItems(),
-    this.loadRecipes()
+    this.loadRecipes(),
+    this.checkDay()
   },
 
   methods: {
@@ -388,7 +389,7 @@ export default {
       this.editedIndex = this.meals.indexOf(meal)
       this.credentials.mealId = this.editedIndex + 1
       console.log(this.credentials.mealId)
-    },
+    }
   }
 }
 </script>
