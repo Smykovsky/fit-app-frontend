@@ -15,7 +15,7 @@
     </b-modal>
 
     <div class='card-container'>
-      
+
       <div v-for='meal in meals' :items='meals' :key='meal.id' class='diet-card'>
         <div class='minimalize' v-if='isHidden'>
           <font-awesome-icon @click='isHidden = !isHidden' :icon="['fas', 'caret-down']" />
@@ -293,8 +293,7 @@ export default {
   mounted() {
     this.loadMeals(),
     this.loadFoodItems(),
-    this.loadRecipes(),
-    this.checkDay()
+    this.loadRecipes()
   },
 
   methods: {
