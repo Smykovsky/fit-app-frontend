@@ -5,36 +5,14 @@
     </div>
     <div class='content-container'>
       <div v-for='recipe in recipes' class='cards-container'>
-        <div class='card-header'>
-          <span>{{ recipe.name }}</span>
-<!--          <img :src='recipe.photoUrl'>-->
+        <div class='card-img'>
+          <img :src='recipe.photoUrl'>
         </div>
-        <div class='card-content'>
-          <div class='description'>
-            <span>{{ recipe.description }}</span>
-          </div>
-          <div class='instruction'>
-            <span>{{ recipe.instruction }}</span>
-          </div>
-
-          <div class='macro'>
-            <div class='count'>
-              <span>Kcal</span>
-              <span>{{ recipe.kcal }}</span>
-            </div>
-            <div class='count'>
-              <span>W</span>
-              <span>{{ recipe.carbohydrates }}g</span>
-            </div>
-            <div class='count'>
-              <span>B</span>
-              <span>{{ recipe.protein }}g</span>
-            </div>
-            <div class='count'>
-              <span>T</span>
-              <span>{{ recipe.fat }}g</span>
-            </div>
-          </div>
+        <div class='card-name'>
+          <span>{{ recipe.name }}</span>
+        </div>
+        <div class='add'>
+          <b-button>+</b-button>
         </div>
       </div>
     </div>
