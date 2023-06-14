@@ -4,7 +4,7 @@
       <span><font-awesome-icon icon="fa-solid fa-utensils" /> Przepisy</span>
     </div>
     <div class='content-container'>
-      <div v-for='recipe in recipes' class='cards-container'>
+      <div @click='showRecipe(recipe.id)' v-for='recipe in recipes' :key='recipe.id' class='cards-container'>
         <div class='card-img'>
           <img :src='recipe.photoUrl'>
         </div>
@@ -47,6 +47,10 @@ export default {
       }).catch(error => {
         console.log(error);
       })
+    },
+    showRecipe(id) {
+      this.$router.push(`/recipe/${id}`);
+      console.log(id)
     }
   }
 }

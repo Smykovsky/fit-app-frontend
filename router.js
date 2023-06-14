@@ -10,6 +10,7 @@ import diet from '@/pages/diet.vue'
 import progress from '@/pages/progress.vue'
 import contact from '@/pages/contact.vue'
 import recipe from '@/pages/recipe.vue'
+import recipeById from '@/pages/recipeById.vue'
 
 Vue.use(Router)
 
@@ -59,6 +60,11 @@ export function createRouter() {
             path: '/recipes',
             component: recipe,
             name: 'recipes'
+          },
+          {
+            path: '/recipe/:id',
+            component: recipeById,
+            name: 'recipeById'
           },
           {
             path: '/contact',
