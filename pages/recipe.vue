@@ -7,6 +7,7 @@
       <div v-for='recipe in recipes' class='cards-container'>
         <div class='card-header'>
           <span>{{ recipe.name }}</span>
+<!--          <img :src='recipe.photoUrl'>-->
         </div>
         <div class='card-content'>
           <div class='description'>
@@ -63,6 +64,7 @@ export default {
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.recipes = response.data
+        console.log(response.data)
         console.log(this.recipes)
       }).catch(error => {
         console.log(error);

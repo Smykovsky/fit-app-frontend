@@ -26,7 +26,7 @@
 
         <div class='meal-title-container'>
           <span>{{ meal.name }}</span>
-          <b-button class='btn-add' @click='add(meal)'>Dodaj produkt</b-button>
+          <b-button class='btn-add' @click='add(meal)'>+</b-button>
         </div>
         <div v-for='(item, index) in meal.foodItems' :key='item.id' class='diet-content' v-bind:class='{"d-none": isHidden}'>
             <div class='item-title-container'>
@@ -227,10 +227,35 @@
           </b-form-group>
         </b-form>
       </b-modal>
+
+      <b-modal id="modal-meal" title="Dodawanie posiłku" hide-footer>
+        <b-form>
+          <b-form-group
+            id="input-group-1"
+            label="Podaj nazwę jedzenia"
+            label-for="input-1"
+            description="Posiłek zostanie dodany do listy"
+          >
+            <b-form-input
+              id="input-1"
+              type="text"
+              placeholder="np. Śniadanie"
+              v-model='newMeal.name'
+              required
+            ></b-form-input>
+          </b-form-group>
+          <b-form-group
+            id='input-group-2'
+          >
+            <b-button class='btn btn-danger' @click="$bvModal.hide('modal-meal')">Zamknij</b-button>
+            <b-button @click='addMeal' class='btn btn-success'>Dodaj</b-button>
+          </b-form-group>
+        </b-form>
+      </b-modal>
     </div>
 
     <ModalMealEdit/>
-    <ModalMeal/>
+    <ModalMeal @click='loadMeals'/>
   </div>
 </template>
 
@@ -243,10 +268,10 @@ export default {
         id: 0,
         pickedDate: ''
       },
-      display: false,
-      context: null,
+      newMeal: {
+        name: ''
+      },
       items: [],
-      options: [],
       selected: null,
       recipes: [
         {
@@ -260,10 +285,8 @@ export default {
       ],
       modalItemEdit: false,
       modalItemAdd: false,
-      modalItemAddFromExisting: false,
       isHidden: false,
       meals: [],
-
       editedIndex: null,
       editedItem: {
         id: 0,
@@ -273,7 +296,6 @@ export default {
         carbohydrates: 0,
         fat: 0
       },
-
       credentials: {
         mealId: 0,
         id: 0,
@@ -334,6 +356,16 @@ export default {
         this.loadMeals()
       }).catch(error => {
         console.log(error.response.data)
+      })
+    },
+    addMeal() {
+      this.$axios.post('/api/meal/add', this.newMeal, {
+        headers: {Authorization: this.$auth.strategy.token.get()}
+      }).then(response => {
+        this.$bvModal.hide('modal-meal');
+        this.loadMeals()
+      }).catch(error => {
+        console.log(error)
       })
     },
     async addItem() {

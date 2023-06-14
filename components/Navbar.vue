@@ -25,12 +25,17 @@
           <font-awesome-icon class='icon' icon="fa-solid fa-phone" />
           <span class='nav-item'>Kontakt</span>
         </router-link></li>
+        <li class='dashboard-li' v-b-modal.modal-user><a class="text-decoration-none">
+          <font-awesome-icon class='icon' icon="fa-solid fa-user" />
+          <span class='nav-item'>Personalizuj profil</span>
+        </a></li>
         <li @click='logout'  class='dashboard-li'><a class="text-decoration-none">
           <font-awesome-icon class='icon' icon="fa-solid fa-right-from-bracket" />
           <span class='nav-item'>Wyloguj się</span>
         </a></li>
       </ul>
     </nav>
+    <ModalPersonalize/>
   </div>
 
 </template>
@@ -47,7 +52,6 @@ export default {
       } catch (error) {
         console.log(error)
       }
-
     }
   }
 }
