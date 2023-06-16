@@ -64,6 +64,7 @@ export function createRouter() {
           {
             path: '/recipe/:id',
             component: recipeById,
+            props: true,
             name: 'recipeById'
           },
           {
