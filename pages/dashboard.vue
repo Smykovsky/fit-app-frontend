@@ -101,9 +101,6 @@ export default {
         this.userDetails = response.data;
         this.pieData = [response.data.proteins, response.data.carbohydrates, response.data.fats];
         this.radialBarData = [this.caloriesToPercent(response.data.caloriesIntakeGoal, response.data.caloriesEaten)];
-        console.log(this.radialBarData)
-        console.log(this.pieData)
-        console.log(this.userDetails)
       }).catch(error => {
         console.log(error)
       })
@@ -133,7 +130,6 @@ export default {
         },
         labels: ['Białko', 'Węglowodany', 'Tłuszcze'],
       },
-
       radialBarData: [],
       radialBarOptions: {
         chart: {
