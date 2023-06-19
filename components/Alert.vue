@@ -2,7 +2,7 @@
   <div class='alerts-container'>
     <div class='alerts' v-for="alert in $store.getters['store/getAlerts']" data-aos='flip-left' data-aos-delay='300'>
       <div class='icon'>
-        <span><font-awesome-icon icon="fa-solid fa-check" /></span>
+        <img src='../static/icon-ok.png'>
       </div>
       <div class="closeMessage" @click="removeAlert(alert)">
         <font-awesome-icon icon="fa-solid fa-x"/>
@@ -15,13 +15,13 @@
 
     <div class='errors' v-for="alert in $store.getters['store/getErrors']" data-aos='flip-left' data-aos-delay='300'>
       <div class='icon'>
-        <font-awesome-icon icon="fa-solid fa-xmark" />
+        <img src='../static/icon-fail.png'>
       </div>
       <div class="closeMessage" @click="removeError(alert)">
         <font-awesome-icon icon="fa-solid fa-x"/>
       </div>
       <div class='message'>
-        <div class='title'>Nie udało się zalogować!</div>
+        <div class='title'>Błąd</div>
         <span>{{alert}}</span>
       </div>
     </div>
