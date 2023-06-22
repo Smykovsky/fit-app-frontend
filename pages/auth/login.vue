@@ -4,7 +4,7 @@
       <div class='title'>
         <h2>Logowanie</h2>
       </div>
-      <Alert/>
+      <AlertsAlert/>
       <form method='post' @submit.prevent='login'>
         <div class='text_field'>
           <input id='login' v-model='credentials.username' type='text' required>

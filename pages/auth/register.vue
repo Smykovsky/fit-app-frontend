@@ -1,6 +1,6 @@
 <template>
   <div class='register'>
-    <Alert/>
+    <AlertsAlert/>
 
     <div class='form-container'>
       <div class='title'>

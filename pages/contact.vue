@@ -36,7 +36,7 @@
             <b-form-textarea v-model='emailData.body' placeholder='wprowadź swoją wiadomość'></b-form-textarea>
             <b-button @click='sendEmail' class='btn btn-primary'>Wyślij</b-button>
           </b-form>
-          <AlertEmail/>
+        <AlertsAlertEmail/>
         </div>
       </div>
     </div>
