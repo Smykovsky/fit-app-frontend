@@ -30,7 +30,7 @@
           <span class='nav-item'>Personalizuj profil</span>
         </a></li>
         <li @click='logout'  class='dashboard-li'><a class="text-decoration-none">
-          <font-awesome-icon class='icon' icon="fa-solid fa-right-from-bracket" />
+          <font-awesome-icon style='color: white' class='icon' icon="fa-solid fa-right-from-bracket" />
           <span class='nav-item'>Wyloguj się</span>
         </a></li>
       </ul>
