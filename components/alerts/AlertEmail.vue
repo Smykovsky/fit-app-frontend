@@ -18,5 +18,5 @@ export default {
 </script>
 
 <style lang="sass">
-@import "assets/alertEmail.sass"
+@import "../../assets/alertEmail"
 </style>

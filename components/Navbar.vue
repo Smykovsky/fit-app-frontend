@@ -35,7 +35,7 @@
         </a></li>
       </ul>
     </nav>
-    <ModalPersonalize/>
+    <ModalsModalPersonalize/>
   </div>
 
 </template>
