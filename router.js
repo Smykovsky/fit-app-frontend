@@ -11,6 +11,7 @@ import progress from '@/pages/progress.vue'
 import contact from '@/pages/contact.vue'
 import recipe from '@/pages/recipe.vue'
 import recipeById from '@/pages/recipeById.vue'
+import Loading from '@/components/Loading.vue'
 
 Vue.use(Router)
 
@@ -72,10 +73,9 @@ export function createRouter() {
             component: contact,
             name: 'contact'
           },
-
         ]
       }
-    ]
+    ],
   })
 }
 

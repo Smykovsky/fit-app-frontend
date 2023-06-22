@@ -1,12 +1,13 @@
 <template>
   <div class='routes-section'>
-      <nuxt/>
+    <Loading/>
+    <nuxt/>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Main'
+  name: 'Main',
 }
 </script>
 

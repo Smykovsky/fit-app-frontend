@@ -61,6 +61,7 @@ export default {
     prefix: process.env.API_URL
   },
 
+
   proxy: {
     '/api': {
       target: 'http://localhost:8080',

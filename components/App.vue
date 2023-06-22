@@ -7,12 +7,11 @@
 
 <script>
 import Navbar from '@/components/Navbar.vue'
-import Footbar from '@/components/Footbar.vue'
 import Main from '@/components/Main.vue'
 
 export default {
   middleware: ['auth'],
-  components: { Navbar, Footbar, Main }
+  components: { Navbar, Main }
 }
 </script>
 
