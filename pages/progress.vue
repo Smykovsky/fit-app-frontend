@@ -62,10 +62,13 @@ export default {
           height: 350,
           zoom: {
             enabled: false
-          }
+          },
         },
         dataLabels: {
           enabled: false
+        },
+        stroke: {
+          curve: 'smooth'
         },
         xaxis: {
           categories: []

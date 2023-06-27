@@ -11,7 +11,7 @@
     </div>
 
     <b-modal id="modal-calendar" title="Kalendarz" hide-footer>
-        <b-calendar block class="calendar" :hide-header="true" v-model="dateObject.pickedDate" @context="handleDayClick" :date-format-options="{day: '2-digit', month: 'numeric', year: 'numeric'}" locale="pl"></b-calendar>
+        <b-calendar class='calendar' block :hide-header="true" v-model="dateObject.pickedDate" @context="handleDayClick" :date-format-options="{day: '2-digit', month: 'numeric', year: 'numeric'}" locale="pl"></b-calendar>
     </b-modal>
 
     <div class='card-container'>
