@@ -3,7 +3,7 @@ export default function({ app, redirect }) {
   const isAdmin = userRoles.includes("admin")
 
   if (!isAdmin) {
-    redirect('/error')
+    redirect('/')
     alert("Nie masz uprawnień ")
   }
 
