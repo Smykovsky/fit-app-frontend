@@ -62,7 +62,7 @@ export default {
         await this.$router.push({name: 'login'})
         await this.$store.dispatch('store/addAlert', 'Konto zostało założone. Gratulacje!')
       } catch (error) {
-        await this.$store.dispatch('store/addError', 'Rejestracja zakończona niepowodzeniem! ')
+        await this.$store.dispatch('store/addError', 'Rejestracja zakończona niepowodzeniem!')
         console.log(error)
       }
     },

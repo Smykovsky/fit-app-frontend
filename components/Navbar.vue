@@ -33,9 +33,9 @@
           <font-awesome-icon style='color: white' class='icon' icon="fa-solid fa-right-from-bracket" />
           <span class='nav-item'>Wyloguj się</span>
         </a></li>
-        <li v-if='' class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'adminBoard'}">
+        <li v-if='isAdmin' class='dashboard-li admin'><router-link class="text-decoration-none" :to="{name: 'adminBoard'}">
           <font-awesome-icon class='icon' icon="fa-solid fa-user" />
-          <span class='nav-item'>ADMIN</span>
+          <span class='nav-item'>Panel Administracyjny</span>
         </router-link></li>
       </ul>
     </nav>
@@ -48,7 +48,14 @@
 
 export default {
   name: 'Navbar',
-
+  data() {
+    return {
+      isAdmin: false
+    }
+  },
+  mounted() {
+    this.checkAdminStatus()
+  },
   methods: {
     async logout() {
       try {
@@ -57,6 +64,11 @@ export default {
       } catch (error) {
         console.log(error)
       }
+    },
+    checkAdminStatus() {
+      const userRoles = this.$auth.user.roles.map(item => item.name)
+      const bool = userRoles.includes("admin")
+      this.isAdmin = bool
     }
   }
 }
