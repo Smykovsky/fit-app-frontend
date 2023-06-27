@@ -1,4 +1,4 @@
-export default function({ app, redirect, store }) {
+export default function({ app, redirect}) {
   const userRoles = app.$auth.user.roles.map(item => item.name)
   const isAdmin = userRoles.includes("admin")
 
