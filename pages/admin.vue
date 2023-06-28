@@ -28,7 +28,7 @@
     </div>
 
     <div v-if="selectedUser">
-      <b-modal v-model="showPasswordModal" title="Zmień hasło" hide-footer>
+      <b-modal id='modal-password' v-model="showPasswordModal" title="Zmień hasło" hide-footer>
         <form @submit.prevent="updatePassword">
           <div class="form-group">
             <label for="newPassword">Nowe hasło:</label>
