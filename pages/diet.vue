@@ -3,7 +3,7 @@
     <div class='header-container'>
       <span> <font-awesome-icon class='icon' icon="fa-solid fa-utensils" /> Twój dzień</span>
       <div class='meal-add'>
-        <b-button class='meal-btn btn btn-success' v-b-modal.modal-meal>Dodaj posiłek</b-button>
+        <b-button class='meal-btn btn btn-success' v-b-modal.modal-meal>+</b-button>
       </div>
       <div class="calendar-icon">
         <span><font-awesome-icon @click="$bvModal.show('modal-calendar')" icon="fa-solid fa-calendar" /></span>
