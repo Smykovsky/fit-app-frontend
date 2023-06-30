@@ -29,6 +29,10 @@
           <font-awesome-icon class='icon' icon="fa-solid fa-user" />
           <span class='nav-item'>Personalizuj profil</span>
         </a></li>
+        <li class='dashboard-li' v-b-modal.modal-newPassword><a class="text-decoration-none">
+          <font-awesome-icon class='icon' icon="fa-solid fa-key" />
+          <span class='nav-item'>Zmień hasło</span>
+        </a></li>
         <li @click='logout'  class='dashboard-li'><a class="text-decoration-none">
           <font-awesome-icon style='color: white' class='icon' icon="fa-solid fa-right-from-bracket" />
           <span class='nav-item'>Wyloguj się</span>
@@ -40,6 +44,7 @@
       </ul>
     </nav>
     <ModalsModalPersonalize/>
+    <ModalsModalChangePassword/>
   </div>
 
 </template>

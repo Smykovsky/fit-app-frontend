@@ -22,6 +22,9 @@
         <div class='account'>
           <h3>Nie masz konta? <router-link :to="{name: 'register'}">Zarejestruj się!</router-link></h3>
         </div>
+        <div class='account'>
+          <h3>Zapomniałeś hasła? <router-link :to="{name: 'accountRecovery'}">Przypomnij</router-link></h3>
+        </div>
       </form>
     </div>
   </div>

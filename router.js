@@ -13,6 +13,7 @@ import recipe from '@/pages/recipe.vue'
 import recipeById from '@/pages/recipeById.vue'
 import admin from '@/pages/admin.vue'
 import adminGuard from '@/middleware/adminGuard'
+import accountRecovery from '@/pages/auth/accountRecovery.vue'
 
 Vue.use(Router)
 
@@ -38,6 +39,11 @@ export function createRouter() {
         path: '/register',
         component: register,
         name: 'register'
+      },
+      {
+        path: '/recovery',
+        component: accountRecovery,
+        name: 'accountRecovery'
       },
       {
         path: '',
