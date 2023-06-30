@@ -69,6 +69,7 @@ export default {
       }).then(response => {
         this.$bvModal.hide('modal-newPassword');
         this.$store.dispatch('store/addAlert', 'Hasło zostało pomyslnie zmienione!')
+        this.credentials = null
       }).catch(error => {
         this.$store.dispatch('store/addError', 'Coś poszło nie tak! ')
       })
