@@ -12,7 +12,7 @@
         <div class='icon'>
           <font-awesome-icon icon="fa-solid fa-weight-hanging" />
         </div>
-        <div class='content'>
+        <div class='content' v-if='this.userDetails'>
           <span>Aktualna waga:</span>
           <div class='equal'>
             <span>{{this.userDetails.weight}}</span>
@@ -37,7 +37,7 @@
         <div class='content'>
           <span>Wymagane kalorie: </span>
           <div class='equal'>
-            <span>{{this.userDetails.caloriesIntakeGoal.toFixed(0)}}</span>
+            <span>{{Math.round(this.userDetails.caloriesIntakeGoal)}}</span>
           </div>
         </div>
       </div>
@@ -48,7 +48,7 @@
         <div class='content'>
           <span>Zjedzone kalorie:</span>
           <div class='equal'>
-            <span>{{this.userDetails.caloriesEaten.toFixed(0)}}</span>
+            <span>{{this.userDetails.caloriesEaten}}</span>
           </div>
         </div>
       </div>
