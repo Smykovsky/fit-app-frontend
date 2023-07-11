@@ -37,7 +37,7 @@
         <div class='content'>
           <span>Wymagane kalorie: </span>
           <div class='equal'>
-            <span>{{this.userDetails.caloriesIntakeGoal}}</span>
+            <span>{{this.userDetails.caloriesIntakeGoal.toFixed(0)}}</span>
           </div>
         </div>
       </div>
@@ -48,7 +48,7 @@
         <div class='content'>
           <span>Zjedzone kalorie:</span>
           <div class='equal'>
-            <span>{{this.userDetails.caloriesEaten}}</span>
+            <span>{{this.userDetails.caloriesEaten.toFixed(0)}}</span>
           </div>
         </div>
       </div>
