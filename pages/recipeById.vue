@@ -2,7 +2,11 @@
   <div class='recipe-container'>
     <div class='recipe-card'>
       <div class='recipe-img'>
-        <img v-if="recipe && recipe.photoUrl" :src='recipe.photoUrl' alt="Opis obrazka">
+        <img v-if="recipe && recipe.photoUrl" :src='getImagePath(recipe.photoUrl)' alt="Opis obrazka">
+        <div v-else>
+          <font-awesome-icon v-b-modal.modal-file style='font-size: 50px' icon="fa-solid fa-image" />
+          <span>Dodaj zdjęcie</span>
+        </div>
       </div>
       <div class='recipe-data'>
         <div class='recipe-header'>
@@ -35,6 +39,25 @@
         </div>
       </div>
     </div>
+
+    <b-modal id="modal-file" title="Wprowadź nową wagę" hide-footer>
+      <b-form>
+        <b-form-group
+          label="Wybierz obraz, kóry chcesz dodać!"
+        >
+          <b-form-file
+            v-model='file'
+            required
+          ></b-form-file>
+        </b-form-group>
+        <b-form-group
+        >
+          <b-button class='btn btn-danger' @click="$bvModal.hide('modal-file')">Zamknij</b-button>
+          <b-button class='btn btn-success' @click='addImage(id)'>Dodaj</b-button>
+        </b-form-group>
+      </b-form>
+    </b-modal>
+
   </div>
 </template>
 
@@ -54,6 +77,8 @@ export default {
       description: true,
       instruction: false,
       macro: false,
+      file: null,
+      formData: null
     }
   },
   created() {
@@ -65,12 +90,23 @@ export default {
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.recipe = response.data
-        console.log(this.recipe)
       }).catch(error => {
         console.log(error)
       })
     },
-
+    addImage(id) {
+      this.formData = new FormData()
+      this.formData.append('photoUrl', this.file)
+      this.$axios.post(`/api/recipe/image/${id}`, this.formData, {
+        headers: {Authorization: this.$auth.strategy.token.get()}
+      }).then(response => {
+        this.recipe = response.data
+        this.$bvModal.hide("modal-file")
+        this.getRecipeById(id)
+      }).catch(error => {
+        console.log(error)
+      })
+    },
     menuDescription() {
       this.instruction = false
       this.macro = false
@@ -89,6 +125,9 @@ export default {
       this.instruction = false
       this.macro = true
       this.isActiveTab = "tab3"
+    },
+    getImagePath(imageName) {
+      return require(`@/static/images/${imageName}`);
     }
   }
 }

@@ -6,7 +6,7 @@
     <div class='content-container'>
       <div @click='showRecipe(recipe.id)' v-for='recipe in recipes' :key='recipe.id' class='cards-container'>
         <div class='card-img'>
-          <img :src='recipe.photoUrl'>
+          <img v-if='recipe.photoUrl' :src='getImagePath(recipe.photoUrl)'>
         </div>
         <div class='card-name'>
           <span>{{ recipe.name }}</span>
@@ -42,8 +42,6 @@ export default {
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.recipes = response.data
-        console.log(response.data)
-        console.log(this.recipes)
       }).catch(error => {
         console.log(error);
       })
@@ -51,6 +49,9 @@ export default {
     showRecipe(id) {
       this.$router.push(`/recipe/${id}`);
       console.log(id)
+    },
+    getImagePath(imageName) {
+      return require(`@/static/images/${imageName}`);
     }
   }
 }
