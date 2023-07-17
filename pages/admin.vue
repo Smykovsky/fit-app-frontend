@@ -21,6 +21,7 @@
           <td>
             <button @click="deleteUser(user.id)" class="btn btn-danger">Usuń</button>
             <button @click="showPasswordModal(user)" class="btn btn-primary">Zmień hasło</button>
+            <button class="btn btn-warning" v-b-modal.modal-roles>Role</button>
           </td>
         </tr>
         </tbody>
@@ -40,6 +41,22 @@
         </form>
       </b-modal>
     </div>
+
+    <b-modal id='modal-roles' title='Role użytkownika' hide-footer>
+     <table class='table table-striped'>
+       <thead>
+        <td>Rola</td>
+        <td>Akcja</td>
+       </thead>
+       <tbody>
+        <td>admin</td>
+        <td>
+          <button class="btn btn-danger">Usuń</button>
+          <button class="btn btn-primary">Dodaj</button>
+        </td>
+       </tbody>
+     </table>
+    </b-modal>
 
     </div>
 </template>

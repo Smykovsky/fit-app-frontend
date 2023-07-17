@@ -3,8 +3,8 @@
     <div class='header-container'>
       <span><font-awesome-icon icon="fa-solid fa-utensils" /> Przepisy</span>
     </div>
-    <div class='content-container'>
-      <div @click='showRecipe(recipe.id)' v-for='recipe in recipes' :key='recipe.id' class='cards-container'>
+    <div class='content-container' ref='content'>
+      <div @click='showRecipe(recipe.id)' v-for='recipe in currentRecipes' :key='recipe.id' class='cards-container'>
         <div class='card-img'>
           <img v-if='recipe.photoUrl' :src='getImagePath(recipe.photoUrl)'>
         </div>
@@ -16,6 +16,11 @@
         </div>
       </div>
     </div>
+    <div class='pagination'>
+      <font-awesome-icon @click="previousPage" :disabled="currentPage === 1" icon="fa-solid fa-caret-left" />
+      <span>{{ currentPage }}</span>
+      <font-awesome-icon @click="nextPage" :disabled="currentPage === totalPages" icon="fa-solid fa-caret-right" />
+    </div>
   </div>
 </template>
 
@@ -25,6 +30,8 @@ export default {
   data() {
     return {
       recipes: [],
+      recipesPerPage: 12,
+      currentPage: 1,
     }
   },
 
@@ -34,6 +41,17 @@ export default {
 
   mounted() {
     this.loadRecipes();
+  },
+
+  computed: {
+    totalPages() {
+      return Math.ceil(this.recipes.length / this.recipesPerPage);
+    },
+    currentRecipes() {
+      const start = (this.currentPage - 1) * this.recipesPerPage;
+      const end = start + this.recipesPerPage;
+      return this.recipes.slice(start, end);
+    },
   },
 
   methods: {
@@ -52,6 +70,25 @@ export default {
     },
     getImagePath(imageName) {
       return require(`@/static/images/${imageName}`);
+    },
+    nextPage() {
+      if (this.currentPage < this.totalPages) {
+        this.currentPage++;
+        this.scroll()
+      }
+    },
+    previousPage() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+        this.scroll()
+      }
+    },
+    scroll() {
+      this.$refs.content.scrollTop = 0;
+      window.scrollTo({
+        top: 0,
+        "behavior": "smooth"
+      })
     }
   }
 }
