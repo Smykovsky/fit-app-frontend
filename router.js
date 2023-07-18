@@ -81,9 +81,9 @@ export function createRouter() {
             name: 'contact'
           },
           {
-            path: '/adminBoard',
+            path: '/admin',
             component: admin,
-            name: 'adminBoard',
+            name: 'admin',
             middleware: adminGuard
           },
         ]

@@ -72,6 +72,11 @@ export default {
       target: 'http://localhost:8080',
       ws: true,
       changeOrigin: true
+    },
+    '/admin': {
+      target: 'http://localhost:8080',
+      ws: true,
+      changeOrigin: true
     }
   },
 
@@ -101,6 +106,9 @@ export default {
         user: {
           property: 'user',
         },
+        admin: {
+          property: 'admin',
+        },
         endpoints: {
           login: { url: '/auth/login', method: 'post' },
           register: { url: '/auth/register', method: 'post' },
@@ -113,7 +121,7 @@ export default {
   },
 
   router: {
-
+    middleware: ['adminGuard']
   },
 
   /*
