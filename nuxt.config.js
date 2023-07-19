@@ -106,9 +106,6 @@ export default {
         user: {
           property: 'user',
         },
-        admin: {
-          property: 'admin',
-        },
         endpoints: {
           login: { url: '/auth/login', method: 'post' },
           register: { url: '/auth/register', method: 'post' },
@@ -121,7 +118,7 @@ export default {
   },
 
   router: {
-    middleware: ['adminGuard']
+
   },
 
   /*

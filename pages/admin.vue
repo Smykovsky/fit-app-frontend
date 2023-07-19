@@ -20,24 +20,13 @@
           <td>{{ user.email }}</td>
           <td>
             <button class="btn btn-danger">Usuń</button>
-            <button v-b-modal.modal-password class="btn btn-primary">Zmień hasło</button>
+            <button @click='updatePassword(user.username, generateRandomPassword(10))' class="btn btn-primary">Zmień hasło</button>
             <button @click='getCurrentUserData(user.username, user.roles)' class="btn btn-warning" v-b-modal.modal-roles>Role</button>
           </td>
         </tr>
         </tbody>
       </table>
     </div>
-    <b-modal id='modal-password' title="Zmień hasło" hide-footer>
-      <form @submit.prevent="updatePassword">
-        <div class="form-group">
-          <label for="newPassword">Nowe hasło:</label>
-          <input type="password" id="newPassword" v-model="newPassword" class="form-control">
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary">Zapisz</button>
-        </div>
-      </form>
-    </b-modal>
 
   <b-modal id='modal-roles' title='Role użytkownika' hide-footer>
    <table class='table table-striped'>
@@ -67,7 +56,7 @@ export default {
       users: [],
       roles: [],
       selectedUser: null,
-      newPassword: '',
+      newPassword: null,
       currentUsername: null,
       currentUserRoles: []
     }
@@ -114,17 +103,26 @@ export default {
         console.log(error)
       })
     },
-    async updatePassword() {
-      await this.$store.dispatch('updateUserPassword', {
-        userId: this.selectedUser.id,
-        newPassword: this.newPassword
-      });
-      this.newPassword = ''
-      this.$bvModal.hide("modal-password")
+    updatePassword(username, newPassword) {
+      this.$axios.post(`/admin/${username}/updatePassword`, newPassword,{
+        headers: {Authorization: this.$auth.strategy.token.get()}
+      }).then(response => {
+      }).catch(error => {
+        console.log(error)
+      })
     },
     getCurrentUserData(username, roles) {
       this.currentUsername = username
       this.currentUserRoles = roles.map(role => role)
+    },
+    generateRandomPassword(length) {
+      var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&';
+      var password = ''
+      for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        password += characters.charAt(randomIndex);
+      }
+      return password;
     }
   },
 }
