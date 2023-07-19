@@ -255,13 +255,16 @@
     </div>
 
     <ModalMealEdit/>
-    <ModalMeal @click='loadMeals'/>
+
   </div>
 </template>
 
 <script>
+import ModalMealEdit from '@/components/modals/ModalMealEdit.vue'
+
 export default {
   name: 'diet',
+  components: { ModalMealEdit },
   data() {
     return {
       dateObject: {
