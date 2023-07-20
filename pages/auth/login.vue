@@ -55,7 +55,9 @@ export default {
         await this.$store.dispatch('store/addError', error.response.data.message)
       }
     },
-
+    changeRoute() {
+      this.$router.push({ path: "/register" });
+    },
     removeAlert(payload) {
       this.$store.dispatch('store/removeAlert', payload);
     },
