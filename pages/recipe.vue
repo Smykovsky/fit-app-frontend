@@ -2,6 +2,9 @@
   <div class='recipes-container'>
     <div class='header-container'>
       <span><font-awesome-icon icon="fa-solid fa-utensils" /> Przepisy</span>
+      <div class='recipe-add'>
+        <b-button v-if='isAdmin' class='btn btn-success' v-b-modal.modal-newRecipe>Nowy przepis</b-button>
+      </div>
     </div>
     <div class='content-container' ref='content'>
       <div @click='showRecipe(recipe.id)' v-for='recipe in currentRecipes' :key='recipe.id' class='cards-container'>
@@ -21,6 +24,7 @@
       <span>{{ currentPage }}</span>
       <font-awesome-icon @click="nextPage" :disabled="currentPage === totalPages" icon="fa-solid fa-caret-right" />
     </div>
+    <ModalsModalNewRecipe/>
   </div>
 </template>
 
@@ -32,6 +36,7 @@ export default {
       recipes: [],
       recipesPerPage: 12,
       currentPage: 1,
+      isAdmin: false
     }
   },
 
@@ -40,7 +45,8 @@ export default {
   },
 
   mounted() {
-    this.loadRecipes();
+    this.loadRecipes(),
+    this.checkAdminStatus()
   },
 
   computed: {
@@ -60,6 +66,7 @@ export default {
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.recipes = response.data
+        console.log(this.$store.getters['store/getIsAdmin'])
       }).catch(error => {
         console.log(error);
       })
@@ -89,6 +96,11 @@ export default {
         top: 0,
         "behavior": "smooth"
       })
+    },
+    checkAdminStatus() {
+      const userRoles = this.$auth.user.roles.map(item => item.name)
+      const bool = userRoles.includes("admin")
+      this.isAdmin = bool
     }
   }
 }

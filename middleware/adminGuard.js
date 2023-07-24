@@ -6,5 +6,4 @@ export default function({ app, redirect}) {
     redirect('/')
     alert("Nie masz uprawnień ")
   }
-
 }
