@@ -32,7 +32,7 @@ export default {
   plugins: [
     {src: "~/plugins/fontawesome.js", ssr: false},
     {src: "~/plugins/apex-charts.js", ssr: false},
-    {src: "~/plugins/aos.js", ssr: false},
+    {src: "~/plugins/aos.js", ssr: false}
   ],
   /*
   ** Nuxt.js dev-modules
