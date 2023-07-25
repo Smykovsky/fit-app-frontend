@@ -98,6 +98,7 @@ export default {
       this.$axios.get('/api/user/data', {
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
+        console.log(this.$auth)
         this.userDetails = response.data;
         this.pieData = [response.data.proteins, response.data.carbohydrates, response.data.fats];
         this.radialBarData = [this.caloriesToPercent(response.data.caloriesIntakeGoal, response.data.caloriesEaten)];
