@@ -45,8 +45,6 @@
         </div>
       </div>
 
-
-
       <b-modal id="modal-itemEdit" v-model='modalItemEdit' title="Edytowanie produktu" hide-footer>
         <b-form>
           <b-form-group
