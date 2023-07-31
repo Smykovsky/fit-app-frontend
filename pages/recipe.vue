@@ -8,20 +8,20 @@
     </div>
     <input class='search' v-model='searchText' type="text" placeholder="Wyszukaj przepis...">
     <div class='content-container' ref='content'>
-      <div v-if='!searchText' @click='showRecipe(recipe.id)' v-for='recipe in currentRecipes' :key='recipe.id' class='cards-container'>
-        <div class='card-img'>
+      <div v-if='!searchText' v-for='recipe in currentRecipes' :key='recipe.id' class='cards-container'>
+        <div @click='showRecipe(recipe.id)' class='card-img'>
           <img v-if='recipe.photoUrl' :src='getImagePath(recipe.photoUrl)'>
         </div>
         <div class='card-name'>
           <span>{{ recipe.name }}</span>
         </div>
         <div class='add'>
-          <b-button>+</b-button>
+          <b-button @click='bindRecipe(recipe)'>+</b-button>
         </div>
       </div>
 
-      <div v-if='searchText' @click='showRecipe(recipe.id)' v-for='recipe in filteredRecipes' :key='recipe.id' class='cards-container'>
-        <div class='card-img'>
+      <div v-if='searchText' v-for='recipe in filteredRecipes' :key='recipe.id' class='cards-container'>
+        <div @click='showRecipe(recipe.id)' class='card-img'>
           <img v-if='recipe.photoUrl' :src='getImagePath(recipe.photoUrl)'>
         </div>
         <div class='card-name'>
@@ -37,7 +37,29 @@
       <span>{{ currentPage }}</span>
       <font-awesome-icon @click="nextPage" :disabled="currentPage === totalPages" icon="fa-solid fa-caret-right" />
     </div>
+
+
     <ModalsModalNewRecipe/>
+
+    <b-modal id="modal-addRecipeToMeal" hide-footer>
+      <b-form>
+        <b-form-group
+          id="input-group-1"
+          label="Do którego posiłku chcesz dodać przepis?"
+          label-for="input-1"
+        >
+          <b-form-select v-model='selected' @change='updateInput' value-field='id'>
+            <b-form-select-option v-for='meal in meals' :key='meal.id' :value='meal.id'>{{ meal.name }}</b-form-select-option>
+          </b-form-select>
+        </b-form-group>
+        <b-form-group
+          id='input-group-2'
+        >
+          <b-button class='btn btn-danger' @click="$bvModal.hide('modal-addRecipeToMeal')">Zamknij</b-button>
+          <b-button @click='addRecipe' class='btn btn-success'>Dodaj</b-button>
+        </b-form-group>
+      </b-form>
+    </b-modal>
   </div>
 </template>
 
@@ -47,20 +69,32 @@ export default {
   data() {
     return {
       recipes: [],
+      meals: [],
       recipesPerPage: 12,
       currentPage: 1,
       isAdmin: false,
       searchText: '',
+      recipeToAdd: {
+        mealId: 0,
+        name: '',
+        calories: '',
+        carbohydrates: null,
+        protein: null,
+        fat: null
+      },
+      selected: null
     }
   },
 
   created() {
-    this.loadRecipes();
+    this.loadRecipes(),
+    this.loadMeals()
   },
 
   mounted() {
     this.loadRecipes(),
-    this.checkAdminStatus()
+    this.checkAdminStatus(),
+    this.loadMeals()
   },
 
   computed: {
@@ -90,6 +124,37 @@ export default {
       }).catch(error => {
         console.log(error);
       })
+    },
+    loadMeals() {
+      this.$axios.get("/api/meal/get", {
+        headers: { Authorization: this.$auth.strategy.token.get()}
+      }).then(response => {
+        this.meals = response.data
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    async bindRecipe(recipe) {
+      this.recipeToAdd.name = recipe.name
+      this.recipeToAdd.calories = recipe.kcal
+      this.recipeToAdd.carbohydrates = recipe.carbohydrates
+      this.recipeToAdd.protein = recipe.protein
+      this.recipeToAdd.fat = recipe.fat
+      this.$bvModal.show("modal-addRecipeToMeal")
+      console.log(this.recipeToAdd)
+    },
+    addRecipe() {
+      this.$axios.post('/api/item/add', this.recipeToAdd, {
+        headers: {Authorization: this.$auth.strategy.token.get()}
+      }).then(response => {
+        this.$bvModal.hide("modal-addRecipeToMeal")
+        this.$router.push('/diet')
+      }).catch(error => {
+        console.log(error.response.data)
+      })
+    },
+    updateInput() {
+      this.recipeToAdd.mealId = this.selected
     },
     showRecipe(id) {
       this.$router.push(`/recipe/${id}`);
