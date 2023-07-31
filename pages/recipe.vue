@@ -8,23 +8,24 @@
     </div>
     <input class='search' v-model='searchText' type="text" placeholder="Wyszukaj przepis...">
     <div class='content-container' ref='content'>
-      <div v-if='filteredRecipes.length == 0' @click='showRecipe(recipe.id)' v-for='recipe in currentRecipes' :key='recipe.id' class='cards-container'>
+      <div v-if='!searchText' @click='showRecipe(recipe.id)' v-for='recipe in currentRecipes' :key='recipe.id' class='cards-container'>
         <div class='card-img'>
           <img v-if='recipe.photoUrl' :src='getImagePath(recipe.photoUrl)'>
         </div>
         <div class='card-name'>
-          <span>{{ recipe.name }}</span>
+          <span>{{ recipe.name }} gg</span>
         </div>
         <div class='add'>
           <b-button>+</b-button>
         </div>
       </div>
-      <div v-if='filteredRecipes' @click='showRecipe(recipe.id)' v-for='recipe in filteredRecipes' :key='recipe.id' class='cards-container'>
+
+      <div v-if='searchText' @click='showRecipe(recipe.id)' v-for='recipe in filteredRecipes' :key='recipe.id' class='cards-container'>
         <div class='card-img'>
           <img v-if='recipe.photoUrl' :src='getImagePath(recipe.photoUrl)'>
         </div>
         <div class='card-name'>
-          <span>{{ recipe.name }}</span>
+          <span>{{ recipe.name }} tt</span>
         </div>
         <div class='add'>
           <b-button>+</b-button>
@@ -73,6 +74,8 @@ export default {
     },
     filteredRecipes() {
       const text = this.searchText.toLocaleLowerCase().trim();
+      const start = (this.currentPage - 1) * this.recipesPerPage;
+      const end = start + this.recipesPerPage;
       return this.recipes.filter(recipe => recipe.name.toLocaleLowerCase().includes(text))
     }
   },
