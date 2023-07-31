@@ -13,7 +13,7 @@
           <img v-if='recipe.photoUrl' :src='getImagePath(recipe.photoUrl)'>
         </div>
         <div class='card-name'>
-          <span>{{ recipe.name }} gg</span>
+          <span>{{ recipe.name }}</span>
         </div>
         <div class='add'>
           <b-button>+</b-button>
@@ -25,7 +25,7 @@
           <img v-if='recipe.photoUrl' :src='getImagePath(recipe.photoUrl)'>
         </div>
         <div class='card-name'>
-          <span>{{ recipe.name }} tt</span>
+          <span>{{ recipe.name }}</span>
         </div>
         <div class='add'>
           <b-button>+</b-button>
