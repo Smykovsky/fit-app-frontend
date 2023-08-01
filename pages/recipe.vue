@@ -123,7 +123,6 @@ export default {
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.recipes = response.data
-        console.log(this.$store.getters['store/getIsAdmin'])
       }).catch(error => {
         console.log(error);
       })
