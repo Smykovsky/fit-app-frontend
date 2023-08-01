@@ -18,12 +18,11 @@
     .recipe-add
       padding-left: 20px
   input[type=text]
-    width: 100%
+    width: auto
     border: 1px solid black
     border-radius: 5px
     padding: 12px 20px
-    margin: 8px 0
-    box-sizing: border-box
+    margin: 14px 0
   .content-container
     height: 100%
     display: flex
@@ -63,19 +62,20 @@
       .add
         position: relative
         height: 10%
-        button
-          position: absolute
-          bottom: 0
-          left: 0
+        font-size: 30px
+        display: flex
+        justify-content: center
   .pagination
-    position: relative
-    font-size: 25px
-    width: auto
+    position: absolute
+    display: flex
     justify-content: center
-    text-align: center
     align-items: center
+    bottom: 0
+    font-size: 25px
+    left: 57%
+    text-align: center
 
-#modal-newRecipe
+#modal-newRecipe, #modal-editRecipe
   position: fixed
   top: 50%
   left: 60%
@@ -97,19 +97,23 @@
       display: flex
       span
         font-size: 25px
+    input[type=text]
+      width: auto
+      border: 1px solid black
+      border-radius: 5px
     .content-container
       height: 100%
       width: 100%
       display: flex
-      padding: 10px
       flex-wrap: wrap
       overflow: auto
+      margin: 0
+      justify-content: center
       .cards-container
         height: 300px
-        flex: 0 0 calc(100% - 5px)
-        max-width: calc(100% - 5px)
+        flex: 0 0 calc(100% - 20px)
+        max-width: calc(100% - 20px)
         box-sizing: border-box
-        margin: 10px
         box-shadow: 0px 0px 6px 1px rgba(66, 68, 90, 1)
         border-radius: 5px
         .card-img
@@ -138,7 +142,7 @@
             bottom: 0
             left: 0
     .pagination
-      position: absolute
+      position: fixed
       font-size: 18px
       width: auto
       justify-content: center

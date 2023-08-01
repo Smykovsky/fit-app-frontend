@@ -11,6 +11,8 @@
       <div class='recipe-data'>
         <div class='recipe-header'>
           <span v-if='recipe && recipe.name'>{{ recipe.name }}</span>
+          <br>
+          <font-awesome-icon v-b-modal.modal-recipeEdit v-if='isMod' style='font-size: 25px' icon="fa-solid fa-pen" />
         </div>
         <div class='recipe-info'>
           <div class='recipe-menu'>
@@ -40,6 +42,8 @@
       </div>
     </div>
 
+    <ModalRecipeEdit :recipe='this.recipe'/>
+
     <b-modal id="modal-file" title="Wprowadź nową wagę" hide-footer>
       <b-form>
         <b-form-group
@@ -62,8 +66,11 @@
 </template>
 
 <script>
+import ModalRecipeEdit from '@/components/modals/ModalRecipeEdit.vue'
+
 export default {
   name: 'recipeById',
+  components: { ModalRecipeEdit },
   props: {
     id: {
       type: String,
@@ -78,11 +85,15 @@ export default {
       instruction: false,
       macro: false,
       file: null,
-      formData: null
+      formData: null,
+      isMod: false
     }
   },
   created() {
     this.getRecipeById(this.id)
+  },
+  mounted() {
+    this.checkModStatus()
   },
   methods: {
     getRecipeById(id) {
@@ -101,6 +112,7 @@ export default {
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.recipe = response.data
+        console.log(this.file)
         this.$bvModal.hide("modal-file")
         this.getRecipeById(id)
       }).catch(error => {
@@ -128,6 +140,11 @@ export default {
     },
     getImagePath(imageName) {
       return require(`@/static/images/${imageName}`);
+    },
+    checkModStatus() {
+      const userRoles = this.$auth.user.roles.map(item => item.name)
+      const bool = userRoles.includes("mod")
+      this.isMod = bool
     }
   }
 }

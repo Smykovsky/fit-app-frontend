@@ -3,7 +3,7 @@
     <div class='header-container'>
       <span><font-awesome-icon icon="fa-solid fa-utensils" /> Przepisy</span>
       <div class='recipe-add'>
-        <b-button v-if='isAdmin' class='btn btn-success' v-b-modal.modal-newRecipe>Nowy przepis</b-button>
+        <b-button class='btn btn-success' v-b-modal.modal-newRecipe>Nowy przepis</b-button>
       </div>
     </div>
     <input class='search' v-model='searchText' type="text" placeholder="Wyszukaj przepis...">
@@ -16,7 +16,7 @@
           <span>{{ recipe.name }}</span>
         </div>
         <div class='add'>
-          <b-button @click='bindRecipe(recipe)'>+</b-button>
+          <font-awesome-icon @click='bindRecipe(recipe)' icon="fa-solid fa-plus" />
         </div>
       </div>
 
@@ -31,12 +31,13 @@
           <b-button>+</b-button>
         </div>
       </div>
+      <div class='pagination'>
+        <font-awesome-icon @click="previousPage" :disabled="currentPage === 1" icon="fa-solid fa-caret-left" />
+        <span>{{ currentPage }}</span>
+        <font-awesome-icon @click="nextPage" :disabled="currentPage === totalPages" icon="fa-solid fa-caret-right" />
+      </div>
     </div>
-    <div class='pagination'>
-      <font-awesome-icon @click="previousPage" :disabled="currentPage === 1" icon="fa-solid fa-caret-left" />
-      <span>{{ currentPage }}</span>
-      <font-awesome-icon @click="nextPage" :disabled="currentPage === totalPages" icon="fa-solid fa-caret-right" />
-    </div>
+
 
 
     <ModalsModalNewRecipe/>
@@ -44,19 +45,21 @@
     <b-modal id="modal-addRecipeToMeal" hide-footer>
       <b-form>
         <b-form-group
-          id="input-group-1"
+          v-if='meals.length >= 1'
           label="Do którego posiłku chcesz dodać przepis?"
-          label-for="input-1"
         >
           <b-form-select v-model='selected' @change='updateInput' value-field='id'>
             <b-form-select-option v-for='meal in meals' :key='meal.id' :value='meal.id'>{{ meal.name }}</b-form-select-option>
           </b-form-select>
         </b-form-group>
+        <b-form-group v-else>
+          <span style='color: red'>Najpierw musisz stworzyć posiłek!</span>
+        </b-form-group>
         <b-form-group
           id='input-group-2'
         >
           <b-button class='btn btn-danger' @click="$bvModal.hide('modal-addRecipeToMeal')">Zamknij</b-button>
-          <b-button @click='addRecipe' class='btn btn-success'>Dodaj</b-button>
+          <b-button @click='addRecipe' :disabled='meals.length <= 0' class='btn btn-success'>Dodaj</b-button>
         </b-form-group>
       </b-form>
     </b-modal>
@@ -93,7 +96,6 @@ export default {
 
   mounted() {
     this.loadRecipes(),
-    this.checkAdminStatus(),
     this.loadMeals()
   },
 
@@ -181,11 +183,6 @@ export default {
         top: 0,
         "behavior": "smooth"
       })
-    },
-    checkAdminStatus() {
-      const userRoles = this.$auth.user.roles.map(item => item.name)
-      const bool = userRoles.includes("admin")
-      this.isAdmin = bool
     }
   }
 }
