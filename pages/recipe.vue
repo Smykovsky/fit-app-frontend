@@ -23,6 +23,7 @@
       <div v-if='searchText' v-for='recipe in filteredRecipes' :key='recipe.id' class='cards-container'>
         <div @click='showRecipe(recipe.id)' class='card-img'>
           <img v-if='recipe.photoUrl' :src='getImagePath(recipe.photoUrl)'>
+          <img v-else src='/static/no-image.jpg'>
         </div>
         <div class='card-name'>
           <span>{{ recipe.name }}</span>
