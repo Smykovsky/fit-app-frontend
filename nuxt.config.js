@@ -64,17 +64,20 @@ export default {
 
   proxy: {
     '/api': {
-      target: 'http://localhost:8080',
+      // target: 'http://localhost:8080',
+      target: 'https://smykapi.castplay.pl',
       ws: true,
       changeOrigin: true
     },
     '/auth': {
-      target: 'http://localhost:8080',
+      // target: 'http://localhost:8080',
+      target: 'https://smykapi.castplay.pl',
       ws: true,
       changeOrigin: true
     },
     '/admin': {
-      target: 'http://localhost:8080',
+      // target: 'http://localhost:8080',
+      target: 'https://smykapi.castplay.pl',
       ws: true,
       changeOrigin: true
     }
