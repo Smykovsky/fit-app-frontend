@@ -1,9 +1,9 @@
 <template>
-  <div class='nav-container'>
+  <div class='nav-container' v-bind:class="{active: $store.getters['store/getMenuIsActive']}">
     <nav>
       <ul>
         <li><a class='logo'>
-          <img src='/logo.jpg' alt=''>
+          <img src='/logo.jpg' v-on:click="store.commit('store/setMenuIsActive')" alt=''>
         </a></li><hr>
         <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'dashboard'}">
           <font-awesome-icon class='icon' icon="fa-solid fa-gauge" />
@@ -55,7 +55,9 @@ export default {
   name: 'Navbar',
   data() {
     return {
-      isAdmin: false
+      isAdmin: false,
+      store: this.$store,
+      isClassActive: false
     }
   },
   mounted() {
@@ -74,7 +76,7 @@ export default {
       const userRoles = this.$auth.user.roles.map(item => item.name)
       const bool = userRoles.includes("admin")
       this.isAdmin = bool
-    }
+    },
   }
 }
 </script>

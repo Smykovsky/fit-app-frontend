@@ -1,6 +1,7 @@
 export const state = () => ({
   alerts: [],
-  errors: []
+  errors: [],
+  menuIsActive: false
 })
 
 export const getters = {
@@ -9,6 +10,9 @@ export const getters = {
   },
   getErrors(state) {
     return state.errors;
+  },
+  getMenuIsActive(state) {
+    return state.menuIsActive;
   }
 }
 
@@ -24,6 +28,9 @@ export const mutations = {
   },
   clearErrors(state, error) {
     state.errors = error
+  },
+  setMenuIsActive(state) {
+    state.menuIsActive = !state.menuIsActive
   }
 }
 

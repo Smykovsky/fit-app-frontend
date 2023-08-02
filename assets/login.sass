@@ -16,23 +16,6 @@
   border-radius: 25px
   box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.5)
 
-//.title
-//  text-align: center
-//  padding: 20px 0 20px 0
-//  font-weight: bold
-//  font-size: 24px
-//  .slider
-//    display: flex
-//    justify-content: center
-//    border: 1px solid lightgray
-//    width: 100%
-//    .log
-//      width: 50%
-//    .log:checked
-//      background: linear-gradient(0deg, rgba(61,81,111,1) 0%, rgba(45,60,110,1) 100%)
-//    .sign
-//      width: 50%
-
 .title h2
   display: flex
   font-weight: bold
@@ -118,6 +101,114 @@ input[type="submit"]:hover
   text-decoration: none
   color: white
 
+@media screen and (max-width: 950px)
+  .login, .register
+    height: 100%
+    width: 100%
+    background: rgb(63,251,233)
+    background: radial-gradient(circle, rgba(63,251,233,1) 0%, rgba(70,110,252,1) 85%)
+    position: absolute
 
+  .form-container
+    width: 300px
+    height: auto
+    position: relative
+    margin: 6% auto
+    top: 10%
+    background: #fff
+    background-size: cover
+    padding: 10px
+    border-radius: 15px
+    box-shadow: 0px 0px 35px rgba(0, 0, 0, 0.5)
 
+  .title h2
+    display: flex
+    font-size: 24px
+    font-weight: bold
+    justify-content: center
+    padding: 10px 20px
+
+  .form-container
+    padding: 20px 30px
+    box-sizing: border-box
+
+  form .text_field
+    position: relative
+    border-bottom: 2px solid #adadad
+    margin: 15px 0
+
+  .text_field input
+    width: 100%
+    padding: 0 5px
+    height: 40px
+    font-size: 12px
+    border: none
+    background: none
+    outline: none
+
+  .text_field label
+    position: absolute
+    top: 50%
+    left: 5px
+    color: #adadad
+    transform: translateY(-50%)
+    font-size: 12px
+    pointer-events: none
+    transition: .5s
+
+  .text_field span::before
+    content: ''
+    position: absolute
+    top: 40px
+    left: 0
+    width: 100%
+    height: 2px
+    background: grey
+
+  .text_field input:focus ~ label, .text_field input:valid ~ label
+    top: -5px
+    color: dimgrey
+
+  .button-container
+    display: flex
+    justify-content: center
+    align-items: center
+
+  input[type="submit"]
+    align-items: center
+    width: 70%
+    height: 40px
+    border-radius: 25px
+    font-size: 15px
+    color: white
+    font-weight: bold
+    cursor: pointer
+    outline: none
+    background: linear-gradient(0deg, rgba(61,81,111,1) 0%, rgba(45,60,110,1) 100%)
+
+  .button-container
+    width: 100%
+
+  input[type="submit"]:hover
+    border-color: grey
+    transition: .5s
+
+  .account
+    width: 100%
+    text-align: center
+    margin: 15px 0 0 0
+    color: #666666
+
+  .account a
+    width: 100%
+    text-align: center
+    font-size: 14px
+    color: #2691d9
+
+  .account h3
+    font-size: 15px
+
+  .account a:hover
+    text-decoration: none
+    color: white
 
