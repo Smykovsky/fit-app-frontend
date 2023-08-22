@@ -14,6 +14,7 @@ import recipeById from '@/pages/recipeById.vue'
 import admin from '@/pages/admin.vue'
 import adminGuard from '@/middleware/adminGuard'
 import accountRecovery from '@/pages/auth/accountRecovery.vue'
+import shoppingList from '@/pages/shoppingList.vue'
 
 Vue.use(Router)
 
@@ -58,6 +59,11 @@ export function createRouter() {
             path: '/diet',
             component: diet,
             name: 'diet'
+          },
+          {
+            path: '/shoppingList',
+            component: shoppingList,
+            name: 'shoppingList'
           },
           {
             path: '/progress',

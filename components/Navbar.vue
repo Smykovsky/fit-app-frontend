@@ -13,6 +13,10 @@
           <font-awesome-icon class='icon' icon="fa-solid fa-utensils" />
           <span class='nav-item'>Mój plan</span>
         </router-link></li>
+        <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'shoppingList'}">
+          <font-awesome-icon class='icon' icon="fa-solid fa-list-check" />
+          <span class='nav-item'>Lista zakupów</span>
+        </router-link></li>
         <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'progress'}">
           <font-awesome-icon class='icon' icon="fa-solid fa-weight-scale" />
           <span class='nav-item'>Mój progres</span>
