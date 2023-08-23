@@ -8,7 +8,7 @@
         <b-button @click='$bvModal.show("modal-shoppingItem")' class='btn btn-success'>+</b-button>
         <b-button @click='$bvModal.show("modal-confirmation")' class='btn btn-danger'>Wyczyść listę</b-button>
       </div>
-      <div class='list' v-for='item in sortedList' :key='item.id'>
+      <div class='list' v-if='sortedList' v-for='item in sortedList' :key='item.id'>
         <div class='list-item' v-bind:class="{active: item.status === 'CHECKED'}" data-aos='fade-up' data-aos-delay='1' data-aos-anchor-placement="bottom-bottom">
           <font-awesome-icon @click="changeStatus(item.id)" v-if='item.status === "UNCHECKED"' icon="fa-solid fa-square" />
           <font-awesome-icon @click="changeStatus(item.id)" v-else icon="fa-solid fa-square-check" />
