@@ -77,7 +77,7 @@ export default {
       })
     },
     getRoles() {
-      this.$axios.get('/admin/getRoles', {
+      this.$axios.get('/api/admin/getRoles', {
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.roles = response.data
@@ -86,7 +86,7 @@ export default {
       })
     },
     addRole(username, role) {
-      this.$axios.post('/admin/addRole', {username, role},{
+      this.$axios.post('/api/admin/addRole', {username, role},{
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.getRoles()
@@ -95,7 +95,7 @@ export default {
       })
     },
     removeRole(username, role) {
-      this.$axios.post('/admin/removeRole', {username, role},{
+      this.$axios.post('/api/admin/removeRole', {username, role},{
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.getRoles()
@@ -104,7 +104,7 @@ export default {
       })
     },
     updatePassword(username, newPassword) {
-      this.$axios.post(`/admin/${username}/updatePassword`, newPassword,{
+      this.$axios.post(`/api/admin/${username}/updatePassword`, newPassword,{
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
       }).catch(error => {

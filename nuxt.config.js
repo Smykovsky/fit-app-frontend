@@ -74,12 +74,6 @@ export default {
       // target: 'https://smykapi.castplay.pl',
       ws: true,
       changeOrigin: true
-    },
-    '/admin': {
-      target: 'http://localhost:8080',
-      // target: 'https://smykapi.castplay.pl',
-      ws: true,
-      changeOrigin: true
     }
   },
 
