@@ -62,9 +62,25 @@
             v-model='client.goal'
             required
           >
-            <b-form-select-option value='Utrzymanie masy'>Utrzymanie masy</b-form-select-option>
+            <b-form-select-option value='Utrzymanie wagi'>Utrzymanie wagi</b-form-select-option>
             <b-form-select-option value='Redukcja'>Redukcja</b-form-select-option>
             <b-form-select-option value='Masa mięśniowa'>Masa mięśniowa</b-form-select-option>
+          </b-form-select>
+        </b-form-group>
+        <b-form-group
+          id="input-group-1"
+          label="Podaj swoją dotychczasową aktywność fizyczną"
+          label-for="input-1"
+        >
+          <b-form-select
+            id="input-1"
+            v-model='client.activity'
+            required
+          >
+            <b-form-select-option value='low'>Niska</b-form-select-option>
+            <b-form-select-option value='medium'>Średnia</b-form-select-option>
+            <b-form-select-option value='high'>Wysoka</b-form-select-option>
+            <b-form-select-option value='very-high'>Bardzo wysoka</b-form-select-option>
           </b-form-select>
         </b-form-group>
         <b-form-group
@@ -88,7 +104,8 @@ export default {
         weight: null,
         height: null,
         gender: null,
-        goal: null
+        goal: null,
+        activity: null
       }
     }
   },
