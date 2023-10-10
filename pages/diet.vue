@@ -130,7 +130,7 @@
           </b-form-group>
         </b-form>
       </b-modal>
-      <b-modal id="modal-item" v-model='modalItemAdd' title="Dodawanie produktu" hide-footer>
+      <b-modal id="modal-item" v-model='modalItemAdd' title="Dodawanie produktu" hide-header hide-footer>
         <b-form>
           <b-form-group
           id="input-group-1"
@@ -148,7 +148,7 @@
         </b-form-group>
           <b-form-group
             id="input-group-1"
-            label="Podaj nazwę produktu"
+            label="Nazwa produktu"
             label-for="input-1"
           >
             <b-form-input
@@ -161,7 +161,7 @@
           </b-form-group>
           <b-form-group
             id="input-group-1"
-            label="Podaj ilość kalorii w produkcie"
+            label="Kalorie"
             label-for="input-1"
           >
             <b-form-input
@@ -173,7 +173,7 @@
           </b-form-group>
           <b-form-group
             id="input-group-1"
-            label="Podaj ilość węglowodanów w produkcie"
+            label="Węglowodany"
             label-for="input-1"
           >
             <b-form-input
@@ -185,7 +185,7 @@
           </b-form-group>
           <b-form-group
             id="input-group-1"
-            label="Podaj ilość białka w produkcie"
+            label="Białko"
             label-for="input-1"
           >
             <b-form-input
@@ -197,7 +197,7 @@
           </b-form-group>
           <b-form-group
             id="input-group-1"
-            label="Podaj ilość tłuszczów w produkcie"
+            label="Tłuszcze"
             label-for="input-1"
           >
             <b-form-input
@@ -208,7 +208,7 @@
             ></b-form-input>
           </b-form-group><hr>
           <b-form-group
-            id="input-group-1"
+            id="input-group-2"
             label="Załaduj dane z przepisu"
             label-for="input-1"
           >
@@ -218,7 +218,7 @@
           </b-form-group>
 
           <b-form-group
-            id='input-group-2'
+            id='input-group-1'
           >
             <b-button class='btn btn-danger' @click="$bvModal.hide('modal-item')">Zamknij</b-button>
             <b-button class='btn btn-success' @click='addItem'>Dodaj</b-button>
