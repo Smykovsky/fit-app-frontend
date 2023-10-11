@@ -213,7 +213,7 @@
             label-for="input-1"
           >
             <b-form-select v-model='selected' value-field='id' @change='updateInputs'>
-              <b-form-select-option v-for='item in items' :key='item.id' :value='item.id'>{{ item.name }}</b-form-select-option>
+              <b-form-select-option v-for='item in recipes' :key='item.id' :value='item.id'>{{ item.name }}</b-form-select-option>
             </b-form-select>
           </b-form-group>
 
@@ -393,7 +393,7 @@ export default {
       this.$axios.get("/api/recipe/get", {
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
-        this.items = response.data
+        this.recipes = response.data
       }).catch(error => {
         console.log(error);
       })
