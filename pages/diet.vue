@@ -316,7 +316,8 @@ export default {
   mounted() {
     this.loadMeals(),
     this.loadFoodItems(),
-    this.loadRecipes()
+    this.loadRecipes(),
+    this.getCurrentDate()
   },
 
   methods: {
@@ -421,6 +422,14 @@ export default {
       this.editedIndex = this.meals.indexOf(meal)
       this.credentials.mealId = this.editedIndex + 1
       console.log(this.credentials.mealId)
+    },
+    getCurrentDate() {
+      const today = new Date();
+      const day = String(today.getDate()).padStart(2, '0')
+      const month = String(today.getMonth() + 1).padStart(2, '0')
+      const year = today.getFullYear()
+
+      this.dateObject.pickedDate = `${year}-${month}-${day}`
     }
   }
 }
