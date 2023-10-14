@@ -337,6 +337,7 @@ export default {
         headers: { Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.meals = response.data
+        console.log(this.$auth.user.age == null)
       }).catch(error => {
         console.log(error)
       })

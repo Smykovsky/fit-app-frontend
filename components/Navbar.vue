@@ -31,7 +31,8 @@
         </router-link></li>
         <li class='dashboard-li' v-b-modal.modal-user><a class="text-decoration-none">
           <font-awesome-icon class='icon' icon="fa-solid fa-user" />
-          <span class='nav-item'>Personalizuj profil</span>
+          <span v-if='isPersonalized == false' class='nav-item'>Personalizuj profil</span>
+          <span v-else class='nav-item'>Edytuj profil</span>
         </a></li>
         <li class='dashboard-li' v-b-modal.modal-newPassword><a class="text-decoration-none">
           <font-awesome-icon class='icon' icon="fa-solid fa-key" />
@@ -59,13 +60,18 @@ export default {
   name: 'Navbar',
   data() {
     return {
+      isPersonalized: false,
       isAdmin: false,
       store: this.$store,
       isClassActive: false
     }
   },
   mounted() {
-    this.checkAdminStatus()
+    this.checkAdminStatus(),
+    this.isUserPersonalized();
+  },
+  created() {
+    this.isUserPersonalized()
   },
   methods: {
     async logout() {
@@ -81,6 +87,13 @@ export default {
       const bool = userRoles.includes("admin")
       this.isAdmin = bool
     },
+    isUserPersonalized() {
+      if (this.$auth.user.height == null || this.$auth.user.weight == null || this.$auth.user.age == null || this.$auth.user.gender == null) {
+        this.isPersonalized = false
+      } else {
+        this.isPersonalized = true
+      }
+    }
   }
 }
 </script>
