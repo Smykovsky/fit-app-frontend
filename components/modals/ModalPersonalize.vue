@@ -87,7 +87,7 @@
           id='input-group-2'
         >
           <b-button class='btn btn-danger' @click="$bvModal.hide('modal-user')">Zamknij</b-button>
-          <b-button @click='personalizeUser' class='btn btn-success'>Dodaj</b-button>
+          <b-button @click='personalizeUser' class='btn btn-success'>Zapisz</b-button>
         </b-form-group>
       </b-form>
     </b-modal>
