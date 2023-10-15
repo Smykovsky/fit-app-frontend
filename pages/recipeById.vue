@@ -13,6 +13,7 @@
           <span v-if='recipe && recipe.name'>{{ recipe.name }}</span>
           <br>
           <font-awesome-icon v-b-modal.modal-recipeEdit v-if='isMod' style='font-size: 25px' icon="fa-solid fa-pen" />
+          <font-awesome-icon v-if='isMod' @click='deleteRecipeById' style='font-size: 25px' icon="fa-solid fa-trash" />
         </div>
         <div class='recipe-info'>
           <div class='recipe-menu'>
@@ -103,6 +104,15 @@ export default {
         this.recipe = response.data
       }).catch(error => {
         console.log(error)
+      })
+    },
+    deleteRecipeById() {
+      this.$axios.post('/api/recipe/delete', {id: this.id}, {
+        headers: {Authorization: this.$auth.strategy.token.get()}
+      }).then(response => {
+        this.$router.push("/recipes")
+      }).catch(error => {
+
       })
     },
     addImage(id) {
