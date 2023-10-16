@@ -19,7 +19,8 @@
           <td>{{ user.username }}</td>
           <td>{{ user.email }}</td>
           <td>
-            <button class="btn btn-danger">Usuń</button>
+            <button @click='blockUser(user.username)' v-if='user.isBlocked === false' class="btn btn-danger">Blokuj</button>
+            <button @click='unBlockUser(user.username)' v-else class='btn btn-success'>Odblokuj</button>
             <button @click='updatePassword(user.username, generateRandomPassword(10))' class="btn btn-primary">Zmień hasło</button>
             <button @click='getCurrentUserData(user.username, user.roles)' class="btn btn-warning" v-b-modal.modal-roles>Role</button>
           </td>
@@ -37,7 +38,7 @@
      <tbody v-for='role in roles' :key='role.id'>
       <td>{{role.name}}</td>
       <td>
-        <button @click='removeRole(currentUsername, role.name)' class="btn btn-danger">Usuń</button>
+        <button :disabled='!currentUserRoles.includes(role.name) || currentUsername.includes("admin")' @click='removeRole(currentUsername, role.name)' class="btn btn-danger">Usuń</button>
         <button :disabled='currentUserRoles.includes(role.name)' @click='addRole(currentUsername, role.name)' class="btn btn-primary">Dodaj</button>
       </td>
      </tbody>
@@ -62,8 +63,8 @@ export default {
     }
   },
   mounted() {
-    this.fetchUsers(),
-    this.getRoles()
+    this.fetchUsers();
+    this.getRoles();
   },
 
   methods: {
@@ -90,6 +91,8 @@ export default {
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.getRoles()
+        this.fetchUsers()
+        this.$bvModal.hide("modal-roles");
       }).catch(error => {
         console.log(error)
       })
@@ -99,6 +102,8 @@ export default {
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.getRoles()
+        this.fetchUsers()
+        this.$bvModal.hide("modal-roles");
       }).catch(error => {
         console.log(error)
       })
@@ -123,6 +128,26 @@ export default {
         password += characters.charAt(randomIndex);
       }
       return password;
+    },
+    blockUser(username) {
+      this.$axios.post(`/api/admin/${username}/block`, {}, {
+        headers: {Authorization: this.$auth.strategy.token.get()}
+      }).then(response => {
+        this.$store.dispatch("store/addAlert", "Konto zostało zablokowane!")
+        this.fetchUsers()
+      }).catch(error => {
+
+      })
+    },
+    unBlockUser(username) {
+      this.$axios.post(`/api/admin/${username}/unBlock`, {}, {
+        headers: {Authorization: this.$auth.strategy.token.get()}
+      }).then(response => {
+        this.$store.dispatch("store/addAlert", "Konto zostało odblokowane!")
+        this.fetchUsers()
+      }).catch(error => {
+
+      })
     }
   },
 }
