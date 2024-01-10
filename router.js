@@ -15,6 +15,7 @@ import admin from '@/pages/admin.vue'
 import adminGuard from '@/middleware/adminGuard'
 import accountRecovery from '@/pages/auth/accountRecovery.vue'
 import shoppingList from '@/pages/shoppingList.vue'
+import test from '@/pages/test.vue'
 
 Vue.use(Router)
 
@@ -91,6 +92,11 @@ export function createRouter() {
             component: admin,
             name: 'admin',
             middleware: adminGuard
+          },
+          {
+            path: '/test',
+            component: test,
+            name: 'test'
           },
         ]
       }

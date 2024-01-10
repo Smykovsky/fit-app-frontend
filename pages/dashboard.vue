@@ -85,6 +85,7 @@
 <script>
 export default {
   name: 'dashboard',
+  middleware: ['userGuard'],
   mounted() {
     this.loadStats()
   },

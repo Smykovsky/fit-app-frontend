@@ -49,7 +49,9 @@ export default {
     async login() {
       try {
         await this.$auth.loginWith('local', {data: this.credentials});
-        await this.$router.push('/')
+        if (this.$auth.user != null) {
+          await this.$router.push('/')
+        } else console.log("error")
       } catch (error) {
         console.log(error)
         await this.$store.dispatch('store/addError', error.response.data.message)
