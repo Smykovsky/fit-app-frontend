@@ -50,7 +50,7 @@ export default {
       try {
         await this.$auth.loginWith('local', {data: this.credentials});
         if (this.$auth.user != null) {
-          await this.$router.push('/')
+
         } else console.log("error")
       } catch (error) {
         console.log(error)
