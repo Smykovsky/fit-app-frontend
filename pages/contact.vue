@@ -31,12 +31,12 @@
 
         <div class='form'>
           <b-form>
-            <b-form-input v-model='emailData.from' type='e-mail' placeholder="Wprowadź swój adres e-mail"></b-form-input>
+            <b-form-input v-model='emailData.from' type='email' placeholder="Wprowadź swój adres e-mail"></b-form-input>
             <b-form-input v-model='emailData.subject' placeholder="Podaj swoję imię"></b-form-input>
             <b-form-textarea v-model='emailData.body' placeholder='wprowadź swoją wiadomość'></b-form-textarea>
             <b-button @click='sendEmail' class='btn btn-primary'>Wyślij</b-button>
           </b-form>
-        <AlertsAlertEmail/>
+          <AlertsAlertEmail/>
         </div>
       </div>
     </div>

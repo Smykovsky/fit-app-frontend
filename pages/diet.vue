@@ -3,7 +3,7 @@
     <div class='header-container'>
       <span> <font-awesome-icon class='icon' icon="fa-solid fa-utensils" /> Twój dzień</span>
       <div class='meal-add'>
-        <b-button class='meal-btn btn btn-success' v-b-modal.modal-meal>+</b-button>
+        <b-button class='meal-btn btn btn-success' v-if='currentDate == dateObject.pickedDate' v-b-modal.modal-meal>+</b-button>
       </div>
       <div class="calendar-icon">
         <span><font-awesome-icon @click="$bvModal.show('modal-calendar')" icon="fa-solid fa-calendar" /></span>
@@ -141,7 +141,7 @@
           <b-form-input
             id="input-1"
             type="number"
-            v-model='credentials.mealId'
+            v-model='newItem.mealId'
             disabled
             required
           ></b-form-input>
@@ -155,7 +155,7 @@
               id="input-1"
               type="text"
               placeholder="np. Serek wiejski"
-              v-model='credentials.name'
+              v-model='newItem.name'
               required
             ></b-form-input>
           </b-form-group>
@@ -167,7 +167,7 @@
             <b-form-input
               id="input-1"
               type="number"
-              v-model='credentials.calories'
+              v-model='newItem.calories'
               required
             ></b-form-input>
           </b-form-group>
@@ -179,7 +179,7 @@
             <b-form-input
               id="input-1"
               type="number"
-              v-model='credentials.carbohydrates'
+              v-model='newItem.carbohydrates'
               required
             ></b-form-input>
           </b-form-group>
@@ -191,7 +191,7 @@
             <b-form-input
               id="input-1"
               type="number"
-              v-model='credentials.protein'
+              v-model='newItem.protein'
               required
             ></b-form-input>
           </b-form-group>
@@ -203,7 +203,7 @@
             <b-form-input
               id="input-1"
               type="number"
-              v-model='credentials.fat'
+              v-model='newItem.fat'
               required
             ></b-form-input>
           </b-form-group><hr>
@@ -269,6 +269,7 @@ export default {
         id: 0,
         pickedDate: ''
       },
+      currentDate: null,
       newMeal: {
         name: ''
       },
@@ -297,7 +298,7 @@ export default {
         carbohydrates: 0,
         fat: 0
       },
-      credentials: {
+      newItem: {
         mealId: 0,
         id: 0,
         name: '',
@@ -309,25 +310,24 @@ export default {
     }
   },
 
-  created() {
-    this.loadRecipes()
+  beforeMount() {
+    this.loadCurrentDateAndPickedDate()
   },
 
   mounted() {
     this.loadMeals(),
     this.loadFoodItems(),
     this.loadRecipes(),
-    this.getCurrentDate()
+    this.loadCurrentDateAndPickedDate()
   },
 
   methods: {
-    async handleDayClick(day) {
+    async handleDayClick() {
       console.log(this.dateObject.pickedDate)
       this.$axios.get(`/api/meal/getByDate/${this.dateObject.pickedDate}`, {
         headers: { Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.meals = response.data
-        console.log(response.data)
       }).catch(error => {
         console.log(error)
       })
@@ -337,7 +337,8 @@ export default {
         headers: { Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.meals = response.data
-        console.log(this.$auth.user.age == null)
+        console.log(this.dateObject.pickedDate + "picked")
+        console.log(this.currentDate + "current")
       }).catch(error => {
         console.log(error)
       })
@@ -356,7 +357,7 @@ export default {
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.modalItemEdit = false;
-        this.loadMeals()
+        this.handleDayClick()
       }).catch(error => {
         console.log(error.response.data)
       })
@@ -366,18 +367,19 @@ export default {
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.$bvModal.hide('modal-meal');
+        this.newMeal.name = "";
         this.loadMeals()
       }).catch(error => {
         console.log(error)
       })
     },
     async addItem() {
-      this.$axios.post('/api/item/add', this.credentials, {
+      this.$axios.post('/api/item/add', this.newItem, {
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.modalItemAdd = false
-        this.credentials = {};
-        this.loadMeals()
+        this.newItem = {};
+        this.handleDayClick()
       }).catch(error => {
         console.log(error.response.data)
       })
@@ -386,7 +388,7 @@ export default {
       this.$axios.post('/api/item/delete', {mealId: mealId, itemId: itemId}, {
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
-        this.loadMeals()
+        this.handleDayClick()
       }).catch(error => {
         console.log(error.response.data)
       })
@@ -405,33 +407,37 @@ export default {
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         const item = response.data;
-        this.credentials.name = item.name;
-        this.credentials.calories = item.kcal;
-        this.credentials.carbohydrates = item.carbohydrates;
-        this.credentials.protein = item.protein;
-        this.credentials.fat = item.fat;
+        this.newItem.name = item.name;
+        this.newItem.calories = item.kcal;
+        this.newItem.carbohydrates = item.carbohydrates;
+        this.newItem.protein = item.protein;
+        this.newItem.fat = item.fat;
       });
     },
 
     edit(item) {
       this.editedItem = Object.assign({}, item)
-      console.log(item.id)
       this.modalItemEdit = true
     },
     add(meal) {
       this.modalItemAdd = true
-      this.editedIndex = this.meals.indexOf(meal)
-      this.credentials.mealId = this.editedIndex + 1
-      console.log(this.credentials.mealId)
+      this.newItem.mealId = meal.id
     },
-    getCurrentDate() {
+    loadCurrentDateAndPickedDate() {
       const today = new Date();
       const day = String(today.getDate()).padStart(2, '0')
       const month = String(today.getMonth() + 1).padStart(2, '0')
       const year = today.getFullYear()
 
-      this.dateObject.pickedDate = `${year}-${month}-${day}`
-    }
+      this.currentDate = `${year}-${month}-${day}`
+
+      if (this.dateObject.pickedDate == null) {
+        this.dateObject.pickedDate= this.currentDate
+      }
+
+      this.dateObject.pickedDate= `${year}-${month}-${day}`
+    },
+
   }
 }
 </script>

@@ -52,7 +52,6 @@ export default {
   methods: {
     editItem (index) {
       this.editedItem = this.meals[index];
-      console.log(this.editedItem);
     },
     save () {
       if (this.editedIndex > -1) {
@@ -67,7 +66,6 @@ export default {
         headers: { Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.meals = response.data
-        console.log(this.meals)
       }).catch(error => {
         console.log(error)
       })

@@ -2,9 +2,6 @@
   <div class='dashboard-container'>
     <div class='header-container'>
       <span> <font-awesome-icon icon="fa-solid fa-gauge" /> Dashboard</span>
-<!--      <div class='personalize'>-->
-<!--        <span><font-awesome-icon v-b-modal.modal-user icon="fa-solid fa-user" /></span>-->
-<!--      </div>-->
     </div>
 
     <div class='card-container'>
