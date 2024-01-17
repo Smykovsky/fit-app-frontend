@@ -12,12 +12,12 @@
     background-color: #001C30
     .logo
       text-align: center
-      margin: 10px 10px 10px 10px
-  img
-    align-items: center
-    width: 130px
-    height: 130px
-    border-radius: 50%
+      margin: 10px 10px 30px 10px
+      span
+        color: grey
+        font-size: 30px
+    .bar
+      display: none
 
 a
   position: relative
@@ -94,8 +94,6 @@ a:hover
   transform: translate(-50%, -50%)
   width: 70%
 
-
-
 @media screen and (max-width: 950px)
   .nav-container
     padding: 0
@@ -110,11 +108,13 @@ a:hover
       left: 0
       width: 70px
       z-index: 9999
+      .logo
+        margin-bottom: 20px
+        .bar
+          display: block
     span
       display: none
-    .logo img
-      width: 30px
-      height: 30px
+
     a
       position: relative
       color: rgb(85, 83, 83)

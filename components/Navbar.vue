@@ -2,9 +2,14 @@
   <div class='nav-container' v-bind:class="{active: $store.getters['store/getMenuIsActive']}">
     <nav>
       <ul>
-        <li><a class='logo'>
-          <img src='/logo.jpg' v-on:click="store.commit('store/setMenuIsActive')" alt=''>
-        </a></li><hr>
+        <li class='logo'>
+          <div class='bar'>
+            <font-awesome-icon icon="fa-solid fa-bars" v-on:click="store.commit('store/setMenuIsActive')" />
+          </div>
+
+<!--          <img src='/logo.jpg' v-on:click="store.commit('store/setMenuIsActive')" alt=''>-->
+          <span>{{username}}</span>
+          <hr></li>
         <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'dashboard'}">
           <font-awesome-icon class='icon' icon="fa-solid fa-gauge" />
           <span class='nav-item'>Dashboard</span>
@@ -62,6 +67,7 @@ export default {
     return {
       isPersonalized: false,
       isAdmin: false,
+      username: '',
       store: this.$store,
       isClassActive: false
     }
@@ -69,6 +75,7 @@ export default {
   mounted() {
     this.checkAdminStatus(),
     this.isUserPersonalized();
+    this.loadUsername()
   },
   created() {
     this.isUserPersonalized()
@@ -78,6 +85,7 @@ export default {
       try {
         await this.$auth.logout('local');
         await this.$router.push({name: 'login'});
+        await localStorage.removeItem("username")
       } catch (error) {
         console.log(error)
       }
@@ -93,6 +101,9 @@ export default {
       } else {
         this.isPersonalized = true
       }
+    },
+    loadUsername() {
+      this.username = localStorage.getItem("username")
     }
   }
 }
