@@ -78,7 +78,6 @@ export default {
         } catch (error) {
           console.log(error)
         }
-
       }).catch(error => {
         this.$store.dispatch('store/addError', 'Coś poszło nie tak! ')
       })
