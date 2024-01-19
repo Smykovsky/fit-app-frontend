@@ -72,8 +72,8 @@ export default {
         try {
           setTimeout(async () => {
             await this.$auth.logout('local');
-            await this.$router.push({name: 'login'});
             await localStorage.removeItem("username")
+            await this.$router.push({name: 'login'});
           }, 3000)
         } catch (error) {
           console.log(error)
