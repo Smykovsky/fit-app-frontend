@@ -64,12 +64,21 @@ export default {
   },
   methods: {
     async changePassword() {
-      this.$axios.post('/auth/changePassword', this.credentials, {
+      await this.$axios.post('/auth/changePassword', this.credentials, {
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.$bvModal.hide('modal-newPassword');
-        this.$store.dispatch('store/addAlert', 'Hasło zostało pomyslnie zmienione!')
-        this.credentials = null
+        this.$store.dispatch('store/addAlert', 'Hasło zostało pomyslnie zmienione! Zostaniesz za chwilę wylogowany.')
+        try {
+          setTimeout(async () => {
+            await this.$auth.logout('local');
+            await this.$router.push({name: 'login'});
+            await localStorage.removeItem("username")
+          }, 3000)
+        } catch (error) {
+          console.log(error)
+        }
+
       }).catch(error => {
         this.$store.dispatch('store/addError', 'Coś poszło nie tak! ')
       })
