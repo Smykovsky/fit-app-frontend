@@ -17,9 +17,9 @@
         <tbody>
         <tr v-if='users' v-for="user in users" :key="user.id">
           <td>{{ user.username }}</td>
-          <td>{{ user.email }}</td>
+          <td>{{ user.email }} <strong style='color: red' v-if='user.blocked'>BANNED</strong></td>
           <td>
-            <button @click='blockUser(user.username)' v-if='user.isBlocked === false' class="btn btn-danger">Blokuj</button>
+            <button @click='blockUser(user.username)' v-if='user.blocked === false' class="btn btn-danger">Blokuj</button>
             <button @click='unBlockUser(user.username)' v-else class='btn btn-success'>Odblokuj</button>
             <button @click='updatePassword(user.username, generateRandomPassword(10))' class="btn btn-primary">Zmień hasło</button>
             <button @click='getCurrentUserData(user.username, user.roles)' class="btn btn-warning" v-b-modal.modal-roles>Role</button>
@@ -73,6 +73,7 @@ export default {
         headers: {Authorization: this.$auth.strategy.token.get()}
       }).then(response => {
         this.users = response.data
+        console.log(this.users)
       }).catch(error => {
         console.log(error)
       })

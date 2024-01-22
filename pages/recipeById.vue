@@ -125,6 +125,7 @@ export default {
         console.log(this.file)
         this.$bvModal.hide("modal-file")
         this.getRecipeById(id)
+        location.reload()
       }).catch(error => {
         console.log(error)
       })

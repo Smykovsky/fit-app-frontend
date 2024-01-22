@@ -77,10 +77,10 @@
             v-model='client.activity'
             required
           >
-            <b-form-select-option value='low'>Niska</b-form-select-option>
-            <b-form-select-option value='medium'>Średnia</b-form-select-option>
-            <b-form-select-option value='high'>Wysoka</b-form-select-option>
-            <b-form-select-option value='very-high'>Bardzo wysoka</b-form-select-option>
+            <b-form-select-option value='low'>Niska (Brak treningów)</span></b-form-select-option>
+            <b-form-select-option value='medium'>Średnia (1-2 treningi w tygodniu)</b-form-select-option>
+            <b-form-select-option value='high'>Wysoka (2-3 treningi w tygodniu)</b-form-select-option>
+            <b-form-select-option value='very-high'>Bardzo wysoka (Codzienne treningi)</b-form-select-option>
           </b-form-select>
         </b-form-group>
         <b-form-group

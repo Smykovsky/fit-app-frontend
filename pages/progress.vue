@@ -67,9 +67,6 @@ export default {
         dataLabels: {
           enabled: false
         },
-        stroke: {
-          curve: 'smooth'
-        },
         xaxis: {
           categories: []
         }

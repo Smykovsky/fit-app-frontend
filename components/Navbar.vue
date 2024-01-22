@@ -16,7 +16,7 @@
         </router-link></li>
         <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'diet'}">
           <font-awesome-icon class='icon' icon="fa-solid fa-utensils" />
-          <span class='nav-item'>Mój plan</span>
+          <span class='nav-item'>Moje posiłki</span>
         </router-link></li>
         <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'shoppingList'}">
           <font-awesome-icon class='icon' icon="fa-solid fa-list-check" />
