@@ -1,6 +1,5 @@
 export default function({ app, redirect}) {
-  const userRoles = app.$auth.user.roles.map(item => item.name)
-  const isAdmin = userRoles.includes("admin")
+  const isAdmin = app.$auth.user.roles.includes("admin")
 
   if (!isAdmin) {
     redirect('/')

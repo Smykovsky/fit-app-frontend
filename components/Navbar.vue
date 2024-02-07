@@ -79,6 +79,7 @@ export default {
   },
   created() {
     this.isUserPersonalized()
+    this.checkAdminStatus()
   },
   methods: {
     async logout() {
@@ -91,9 +92,10 @@ export default {
       }
     },
     checkAdminStatus() {
-      const userRoles = this.$auth.user.roles.map(item => item.name)
-      const bool = userRoles.includes("admin")
+      const bool = this.$auth.user.roles.includes("admin");
+      console.log(this.$auth.user.roles.includes("admin"))
       this.isAdmin = bool
+      console.log(bool)
     },
     isUserPersonalized() {
       if (this.$auth.user.height == null || this.$auth.user.weight == null || this.$auth.user.age == null || this.$auth.user.gender == null) {
