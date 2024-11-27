@@ -7,39 +7,38 @@
             <font-awesome-icon icon="fa-solid fa-bars" v-on:click="store.commit('store/setMenuIsActive')" />
           </div>
 
-<!--          <img src='/logo.jpg' v-on:click="store.commit('store/setMenuIsActive')" alt=''>-->
           <span>{{username}}</span>
-          <hr></li>
-        <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'dashboard'}">
+        </li>
+        <li class='dashboard-li' v-on:click="store.commit('store/setMenuIsActive')"><router-link class="text-decoration-none" :to="{name: 'dashboard'}">
           <font-awesome-icon class='icon' icon="fa-solid fa-gauge" />
           <span class='nav-item'>Dashboard</span>
         </router-link></li>
-        <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'diet'}">
+        <li class='dashboard-li' v-on:click="store.commit('store/setMenuIsActive')"><router-link class="text-decoration-none" :to="{name: 'diet'}">
           <font-awesome-icon class='icon' icon="fa-solid fa-utensils" />
           <span class='nav-item'>Moje posiłki</span>
         </router-link></li>
-        <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'shoppingList'}">
+        <li class='dashboard-li' v-on:click="store.commit('store/setMenuIsActive')"><router-link class="text-decoration-none" :to="{name: 'shoppingList'}">
           <font-awesome-icon class='icon' icon="fa-solid fa-list-check" />
           <span class='nav-item'>Lista zakupów</span>
         </router-link></li>
-        <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'progress'}">
+        <li class='dashboard-li' v-on:click="store.commit('store/setMenuIsActive')"><router-link class="text-decoration-none" :to="{name: 'progress'}">
           <font-awesome-icon class='icon' icon="fa-solid fa-weight-scale" />
           <span class='nav-item'>Mój progres</span>
         </router-link></li>
-        <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'recipes'}">
+        <li class='dashboard-li' v-on:click="store.commit('store/setMenuIsActive')"><router-link class="text-decoration-none" :to="{name: 'recipes'}">
           <font-awesome-icon class='icon' icon="fa-solid fa-utensils" />
           <span class='nav-item'>Przepisy</span>
         </router-link></li>
-        <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'contact'}">
+        <li class='dashboard-li' v-on:click="store.commit('store/setMenuIsActive')"><router-link class="text-decoration-none" :to="{name: 'contact'}">
           <font-awesome-icon class='icon' icon="fa-solid fa-phone" />
           <span class='nav-item'>Kontakt</span>
         </router-link></li>
-        <li class='dashboard-li' v-b-modal.modal-user><a class="text-decoration-none">
+        <li class='dashboard-li' v-on:click="store.commit('store/setMenuIsActive')" v-b-modal.modal-user><a class="text-decoration-none">
           <font-awesome-icon class='icon' icon="fa-solid fa-user" />
           <span v-if='isPersonalized == false' class='nav-item'>Personalizuj profil</span>
           <span v-else class='nav-item'>Edytuj profil</span>
         </a></li>
-        <li class='dashboard-li' v-b-modal.modal-newPassword><a class="text-decoration-none">
+        <li class='dashboard-li' v-on:click="store.commit('store/setMenuIsActive')" v-b-modal.modal-newPassword><a class="text-decoration-none">
           <font-awesome-icon class='icon' icon="fa-solid fa-key" />
           <span class='nav-item'>Zmień hasło</span>
         </a></li>
