@@ -10,7 +10,7 @@
           <span>{{username}}</span>
         </li>
         <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'dashboard'}">
-          <font-awesome-icon class='icon' icon="fa-solid fa-gauge" />
+          <font-awesome-icon icon="fa-solid fa-gauge" />
           <span class='nav-item'>Dashboard</span>
         </router-link></li>
         <li class='dashboard-li'><router-link class="text-decoration-none" :to="{name: 'diet'}">
