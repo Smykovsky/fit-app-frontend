@@ -15,6 +15,9 @@ export default {
 
     ]
   },
+  server: {
+    port: 3001,
+  },
   /*
   ** Customize the progress-bar color
   */
@@ -64,13 +67,15 @@ export default {
 
   proxy: {
     '/api': {
-      target: 'http://localhost:8080',
+      //target: 'http://localhost:8080',
+	target: 'http://api.fit-app.kamilsmyk.pl',
       // target: 'https://smykapi.castplay.pl',
       ws: true,
       changeOrigin: true
     },
     '/auth': {
-      target: 'http://localhost:8080',
+     // target: 'http://localhost:8080',
+	target: 'http://api.fit-app.kamilsmyk.pl',
       // target: 'https://smykapi.castplay.pl',
       ws: true,
       changeOrigin: true
